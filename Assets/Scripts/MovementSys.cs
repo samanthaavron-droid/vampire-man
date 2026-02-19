@@ -9,7 +9,8 @@ public static class MovementSys
             entity.transform.position += new Vector3(direction.x, direction.y, 0f) * speed * Time.deltaTime;
             lastDir = new Vector3(direction.x, direction.y, 0f);
             RotateDirection(entity, direction);
-        } else
+        } 
+        else
         {
             entity.transform.position += lastDir * speed * Time.deltaTime;
         }
@@ -26,7 +27,8 @@ public static class MovementSys
         if (hit)
         {
             return false;
-        } else
+        } 
+        else
         {
             return true;
         }
