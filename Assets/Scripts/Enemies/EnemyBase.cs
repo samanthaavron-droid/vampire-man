@@ -2,12 +2,10 @@ using UnityEngine;
 
 public class EnemyBase : MonoBehaviour
 {
-    private GameObject _player;
-
     public int damage;
     void Start()
     {
-        _player = GameObject.FindGameObjectWithTag("Player");
+        
     }
     void Update()
     {

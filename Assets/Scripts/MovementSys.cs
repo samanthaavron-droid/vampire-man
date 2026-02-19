@@ -4,11 +4,13 @@ public static class MovementSys
 {
     public static void MoveTo(GameObject entity, Vector2 direction, float speed, ref Vector3 lastDir)
     {
-        if (RayCastCheck(entity, direction))
+        Vector2 checkedDir = GetDirection(direction);
+
+        if (RayCastCheck(entity, checkedDir))
         {
-            entity.transform.position += new Vector3(direction.x, direction.y, 0f) * speed * Time.deltaTime;
-            lastDir = new Vector3(direction.x, direction.y, 0f);
-            RotateDirection(entity, direction);
+            entity.transform.position += new Vector3(checkedDir.x, checkedDir.y, 0f) * speed * Time.deltaTime;
+            lastDir = new Vector3(checkedDir.x, checkedDir.y, 0f);
+            RotateDirection(entity, checkedDir);
         } else
         {
             entity.transform.position += lastDir * speed * Time.deltaTime;
@@ -29,6 +31,16 @@ public static class MovementSys
         } else
         {
             return true;
+        }
+    }
+    public static Vector2 GetDirection(Vector2 rawDir)
+    {
+        if (rawDir.x != 0f)
+        {
+            return new Vector2(rawDir.x, 0f);
+        } else
+        {
+            return new Vector2(0f, rawDir.y);
         }
     }
 }
