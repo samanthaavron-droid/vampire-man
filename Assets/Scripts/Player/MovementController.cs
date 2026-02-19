@@ -23,16 +23,8 @@ public class MovementController : MonoBehaviour
         {
             _movementDirection = moveDir.action.ReadValue<Vector2>();
         }
-        //only sending a single direction
-        if (_movementDirection.x != 0)
-        {
-            _checkedMoveDirection = new Vector2(_movementDirection.x, 0f);
-        } else
-        {
-            _checkedMoveDirection = new Vector2(0f, _movementDirection.y);
-        }
 
         //sending info to movement system
-        MovementSys.MoveTo(gameObject, _checkedMoveDirection, _PlayerBase.speed, ref lastDir);
+        MovementSys.MoveTo(gameObject, _movementDirection, _PlayerBase.speed, ref lastDir);
     }
 }
