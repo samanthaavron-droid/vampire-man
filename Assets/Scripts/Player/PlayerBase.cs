@@ -4,10 +4,11 @@ using static Weapons;
 
 public class PlayerBase : MonoBehaviour
 {
-    private MovementController _movementController => GetComponent<MovementController>();
+    [HideInInspector] public MovementController _movementController => GetComponent<MovementController>();
     private Weapons _weapons => GetComponent<Weapons>();
 
     public InputActionReference attack;
+    public InputActionReference upgradeDebug;
 
     public float health;
     public float speed;
@@ -43,10 +44,15 @@ public class PlayerBase : MonoBehaviour
     }
     public void MainAttack(InputAction.CallbackContext obj)
     {
-        _weapons.AttackMain();
+        _weapons.mainWeapon.Use(this);
+    }
+    public void UpgradeDebug(InputAction.CallbackContext obj)
+    {
+        _weapons.mainWeapon.SpeedUpgrade();
     }
     private void OnEnable()
     {
         attack.action.performed += MainAttack;
+        upgradeDebug.action.performed += UpgradeDebug;
     }
 }

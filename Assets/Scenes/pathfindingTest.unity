@@ -948,6 +948,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
   target: {fileID: 1293670467}
   speed: 3
+--- !u!114 &972022458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc1515ab76e54f068e2f2207940fab32, type: 3}
+  m_Name: playerController/SpeedUpgrade
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.InputActionReference
+  m_Asset: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  m_ActionId: e73d89a1-ed15-44ac-9809-c7077c311ae0
 --- !u!1 &978793927
 GameObject:
   m_ObjectHideFlags: 0
@@ -1515,6 +1529,7 @@ GameObject:
   - component: {fileID: 1293670463}
   - component: {fileID: 1293670462}
   - component: {fileID: 1293670461}
+  - component: {fileID: 1293670468}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1535,8 +1550,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerBase
   attack: {fileID: 1619897935}
-  speed: 5
+  upgradeDebug: {fileID: 972022458}
   health: 5
+  speed: 5
 --- !u!114 &1293670462
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1549,6 +1565,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d02ac595221ca704dbdb16d93de2d5a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MovementController
+  _currentDirection: {x: 0, y: 0}
   moveDir: {fileID: 1725157167}
 --- !u!114 &1293670463
 MonoBehaviour:
@@ -1727,6 +1744,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1293670468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1293670460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e69a21e6c9b73e42a4f3336433415c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponControll
+  dashMainStats: {fileID: 11400000, guid: ff8c0fd92d94f9248a1fed5731fefa53, type: 2}
+  swordStats: {fileID: 0}
 --- !u!1 &1347636187
 GameObject:
   m_ObjectHideFlags: 0
