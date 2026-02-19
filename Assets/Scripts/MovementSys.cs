@@ -28,7 +28,8 @@ public static class MovementSys
         if (hit)
         {
             return false;
-        } else
+        } 
+        else
         {
             return true;
         }
