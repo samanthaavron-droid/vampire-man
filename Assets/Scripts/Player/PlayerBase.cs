@@ -12,7 +12,7 @@ public class PlayerBase : MonoBehaviour
     public float health;
     public float speed;
 
-    private bool immune;
+    private bool immune = false;
     void Start()
     {
 
