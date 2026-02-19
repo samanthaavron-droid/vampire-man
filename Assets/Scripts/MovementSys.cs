@@ -25,7 +25,7 @@ public static class MovementSys
         SnapToAxis(entity, direction);
     }
 
-    private static void SnapToAxis(GameObject entity, Vector3 direction)
+    public static void SnapToAxis(GameObject entity, Vector3 direction)
     {
         Vector3 pos = entity.transform.position;
         // Якщо рухаємось по X, вирівнюємо Y до найближчого центру клітинки
