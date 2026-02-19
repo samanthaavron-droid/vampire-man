@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 public class MovementController : MonoBehaviour
 {
     private Vector2 _nextDirection;
-    private Vector2 _currentDirection;
+    [HideInInspector] public Vector2 _currentDirection;
     private PlayerBase _playerBase; // Кешуємо компонент
 
     public InputActionReference moveDir;

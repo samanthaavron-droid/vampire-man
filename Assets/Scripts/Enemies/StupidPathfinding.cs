@@ -38,7 +38,7 @@ public class StupidPathfinding : MonoBehaviour
         {
             //sending info to movement sys
        //     MovementSys.MoveTo(gameObject, _checkedDirection, speed, ref lastDir);
-            Debug.Log("Normal movement");
+            //Debug.Log("Normal movement");
         } 
         else
         {

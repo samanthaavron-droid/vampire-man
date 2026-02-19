@@ -9,7 +9,10 @@ public class PlayerBase : MonoBehaviour
 
     public InputActionReference attack;
 
-    public int health;
+    public float health;
+    public float speed;
+
+    private bool immune;
     void Start()
     {
 
@@ -29,9 +32,17 @@ public class PlayerBase : MonoBehaviour
         //knockback
         //_movementController.movementDirection = -_movementController.movementDirection;
     }
+    public void TakeDamage(float damage)
+    {
+        if (immune) //immunity check
+        {
+            return;
+        }
+
+        health -= damage; 
+    }
     public void MainAttack(InputAction.CallbackContext obj)
     {
-        Debug.Log("main attack called");
         _weapons.AttackMain();
     }
     private void OnEnable()

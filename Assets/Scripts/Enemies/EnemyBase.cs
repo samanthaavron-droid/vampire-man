@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class EnemyBase : MonoBehaviour
 {
-    public int damage;
-    public int health;
+    public float damage;
+    public float health;
     void Start()
     {
         
@@ -17,14 +17,14 @@ public class EnemyBase : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            collision.gameObject.GetComponent<PlayerBase>().Damage(damage);
+            collision.gameObject.GetComponent<PlayerBase>().TakeDamage(damage);
         }
     }
     public void Die()
     {
         Destroy(gameObject);
     }
-    public void Damage(int damage)
+    public void TakeDamage(float damage)
     {
         health =- damage;
     }
