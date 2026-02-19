@@ -1,31 +1,54 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class MovementController : MonoBehaviour
 {
-    [HideInInspector]
-    public Vector2 movementDirection;
-
-    public float speed;
-
-    private PlayerBase _PlayerBase => GetComponent<PlayerBase>();
-
-    [HideInInspector] public Vector3 lastDir = new Vector3();
+    private Vector2 _nextDirection;
+    private Vector2 _currentDirection;
+    private PlayerBase _playerBase; // Кешуємо компонент
 
     public InputActionReference moveDir;
-    void Start()
+    private float changeDirectionBuffer = 0.6f;
+    private float curChangeDirectionBuffer;
+
+    void Awake()
     {
-        movementDirection = new Vector2(0f, 0f);
+        _playerBase = GetComponent<PlayerBase>();
     }
+
     void Update()
     {
-        //only updating non 0 input
-        if (moveDir.action.ReadValue<Vector2>() != Vector2.zero)
+        Vector2 input = moveDir.action.ReadValue<Vector2>();
+        if (input.magnitude > 0.1f)
         {
-            movementDirection = moveDir.action.ReadValue<Vector2>();
+            _nextDirection = MovementSys.GetDirection(input);
         }
 
-        //sending info to movement system
-        MovementSys.MoveTo(gameObject, movementDirection, speed, ref lastDir);
+        if (_nextDirection != _currentDirection)
+        {
+            if (MovementSys.CanMove(gameObject, _nextDirection))
+            {
+                _currentDirection = _nextDirection;
+            }
+        }
+
+        if (MovementSys.CanMove(gameObject, _currentDirection))
+        {
+            MovementSys.Move(gameObject, _currentDirection, _playerBase.speed);
+            MovementSys.ChangeRot(gameObject, _currentDirection);
+        }
+
+        if (_nextDirection != _currentDirection)
+        {
+            if (curChangeDirectionBuffer > 0)
+            {
+                curChangeDirectionBuffer -= Time.deltaTime;
+            }
+            else
+            {
+                _nextDirection = _currentDirection;
+                curChangeDirectionBuffer = changeDirectionBuffer;
+            }
+        }
     }
 }

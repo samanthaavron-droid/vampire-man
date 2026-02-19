@@ -33,11 +33,5 @@ public class mazeGrid : MonoBehaviour
     {
         return new Vector3(x, y, 0) * cellSize + originPosition;
     }
-    public int[] GetXY(Vector3 worldPosition)
-    {
-        int x = Mathf.FloorToInt((worldPosition - originPosition).x / cellSize);
-        int y = Mathf.FloorToInt((worldPosition - originPosition).y / cellSize);
-
-        return new int[]{x, y};
-    }
+    public int[] GetXY;
 }
