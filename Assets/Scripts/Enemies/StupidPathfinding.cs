@@ -61,11 +61,11 @@ public class StupidPathfinding : MonoBehaviour
 
         if (hit)
         {
-            Debug.Log("wall found");
+            //Debug.Log("wall found");
             return false;
         } else
         {
-            Debug.Log("wall not found");
+            //Debug.Log("wall not found");
             return true; 
         }
     }
