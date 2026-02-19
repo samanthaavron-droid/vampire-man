@@ -1,8 +1,10 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyBase : MonoBehaviour
 {
     public int damage;
+    public int health;
     void Start()
     {
         
@@ -17,5 +19,13 @@ public class EnemyBase : MonoBehaviour
         {
             collision.gameObject.GetComponent<PlayerBase>().Damage(damage);
         }
+    }
+    public void Die()
+    {
+        Destroy(gameObject);
+    }
+    public void Damage(int damage)
+    {
+        health =- damage;
     }
 }

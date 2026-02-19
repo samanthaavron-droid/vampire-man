@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static Weapons;
 
 public class PlayerBase : MonoBehaviour
 {
@@ -8,11 +9,10 @@ public class PlayerBase : MonoBehaviour
 
     public InputActionReference attack;
 
-    public float speed;
     public int health;
     void Start()
     {
-        
+
     }
     void Update()
     {
@@ -27,6 +27,15 @@ public class PlayerBase : MonoBehaviour
         health -= damage;
 
         //knockback
-        //_movementController._movementDirection = -_movementController._movementDirection;
+        _movementController.movementDirection = -_movementController.movementDirection;
+    }
+    public void MainAttack(InputAction.CallbackContext obj)
+    {
+        Debug.Log("main attack called");
+        _weapons.AttackMain();
+    }
+    private void OnEnable()
+    {
+        attack.action.performed += MainAttack;
     }
 }
