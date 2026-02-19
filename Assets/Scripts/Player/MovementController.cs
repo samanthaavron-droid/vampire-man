@@ -1,38 +1,54 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class MovementController : MonoBehaviour
 {
-    [HideInInspector]
-    public Vector2 _movementDirection;
-    private Vector2 _checkedMoveDirection;
-
-    private PlayerBase _PlayerBase => GetComponent<PlayerBase>();
-
-    Vector3 lastDir = new Vector3();
+    private Vector2 _nextDirection;
+    private Vector2 _currentDirection;
+    private PlayerBase _playerBase; // Кешуємо компонент
 
     public InputActionReference moveDir;
-    void Start()
+    private float changeDirectionBuffer = 0.6f;
+    private float curChangeDirectionBuffer;
+
+    void Awake()
     {
-        _movementDirection = new Vector2(0f, 0f);
+        _playerBase = GetComponent<PlayerBase>();
     }
+
     void Update()
     {
-        //only updating non 0 input
-        if (moveDir.action.ReadValue<Vector2>() != Vector2.zero)
+        Vector2 input = moveDir.action.ReadValue<Vector2>();
+        if (input.magnitude > 0.1f)
         {
-            _movementDirection = moveDir.action.ReadValue<Vector2>();
-        }
-        //only sending a single direction
-        if (_movementDirection.x != 0)
-        {
-            _checkedMoveDirection = new Vector2(_movementDirection.x, 0f);
-        } else
-        {
-            _checkedMoveDirection = new Vector2(0f, _movementDirection.y);
+            _nextDirection = MovementSys.GetDirection(input);
         }
 
-        //sending info to movement system
-        MovementSys.MoveTo(gameObject, _checkedMoveDirection, _PlayerBase.speed, ref lastDir);
+        if (_nextDirection != _currentDirection)
+        {
+            if (MovementSys.CanMove(gameObject, _nextDirection))
+            {
+                _currentDirection = _nextDirection;
+            }
+        }
+
+        if (MovementSys.CanMove(gameObject, _currentDirection))
+        {
+            MovementSys.Move(gameObject, _currentDirection, _playerBase.speed);
+            MovementSys.ChangeRot(gameObject, _currentDirection);
+        }
+
+        if (_nextDirection != _currentDirection)
+        {
+            if (curChangeDirectionBuffer > 0)
+            {
+                curChangeDirectionBuffer -= Time.deltaTime;
+            }
+            else
+            {
+                _nextDirection = _currentDirection;
+                curChangeDirectionBuffer = changeDirectionBuffer;
+            }
+        }
     }
 }

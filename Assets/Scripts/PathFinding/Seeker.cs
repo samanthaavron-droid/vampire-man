@@ -7,8 +7,8 @@ public class Seeker : MonoBehaviour
     public float speed = 3f;
     private float updateRate = 0.25f;
 
-    private List<Node> path;
-    private int targetIndex;
+    internal List<Node> path;
+    internal int targetIndex;
 
     private void Start()
     {
@@ -27,30 +27,6 @@ public class Seeker : MonoBehaviour
             {
                 targetIndex = 0;
             }
-        }
-    }
-
-    private void Update()
-    {
-        if (path != null)
-        {
-            FollowPath();
-        }
-    }
-
-    void FollowPath()
-    {
-        if (targetIndex >= path.Count) return;
-
-        Vector3 targetPos = path[targetIndex].Position;
-
-        // Рухаємося
-        transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
-
-        // Використовуємо sqrMagnitude для оптимізації (0.1f * 0.1f = 0.01f)
-        if ((transform.position - targetPos).sqrMagnitude < 0.01f)
-        {
-            targetIndex++;
         }
     }
 }

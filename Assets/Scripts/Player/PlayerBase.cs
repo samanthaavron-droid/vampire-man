@@ -27,6 +27,6 @@ public class PlayerBase : MonoBehaviour
         health -= damage;
 
         //knockback
-        _movementController._movementDirection = -_movementController._movementDirection;
+        //_movementController._movementDirection = -_movementController._movementDirection;
     }
 }
