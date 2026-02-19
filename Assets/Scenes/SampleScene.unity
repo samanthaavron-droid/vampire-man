@@ -532,20 +532,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &615689514
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc1515ab76e54f068e2f2207940fab32, type: 3}
-  m_Name: playerController/MoveDirection
-  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.InputActionReference
-  m_Asset: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
-  m_ActionId: d360f169-73c5-4707-9f3e-11d35f9d6a5c
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -645,6 +631,7 @@ GameObject:
   - component: {fileID: 638517966}
   - component: {fileID: 638517963}
   - component: {fileID: 638517965}
+  - component: {fileID: 638517967}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -784,8 +771,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d02ac595221ca704dbdb16d93de2d5a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MovementController
-  _movementDirection: {x: 0, y: 0}
-  moveDir: {fileID: 615689514}
+  movementDirection: {x: 0, y: 0}
+  speed: 1
+  lastDir: {x: 0, y: 0, z: 0}
+  moveDir: {fileID: 1725098614}
 --- !u!50 &638517964
 Rigidbody2D:
   serializedVersion: 5
@@ -825,8 +814,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84a2ffeafeec8e24695a4bee36e24f7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerBase
-  attack: {fileID: 1044805780}
-  speed: 5
+  attack: {fileID: 2086180271}
   health: 5
 --- !u!114 &638517966
 MonoBehaviour:
@@ -858,6 +846,20 @@ MonoBehaviour:
   m_DefaultActionMap: 
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &638517967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 638517959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e69a21e6c9b73e42a4f3336433415c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Weapons
+  mainWeapon: 1
+  secondaryWeapon: 0
 --- !u!1 &696390695
 GameObject:
   m_ObjectHideFlags: 0
@@ -2143,6 +2145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyBase
   damage: 1
+  health: 0
 --- !u!114 &1034056632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2155,21 +2158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e61951c754141c47914c965c232c3ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StupidPathfinding
-  speed: 10
---- !u!114 &1044805780
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc1515ab76e54f068e2f2207940fab32, type: 3}
-  m_Name: playerController/MainAttack
-  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.InputActionReference
-  m_Asset: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
-  m_ActionId: ad27f766-bb10-4128-b3a1-16fe61150a89
+  speed: 5
 --- !u!1 &1504908152
 GameObject:
   m_ObjectHideFlags: 0
@@ -2584,6 +2573,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1725098614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc1515ab76e54f068e2f2207940fab32, type: 3}
+  m_Name: playerController/MoveDirection
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.InputActionReference
+  m_Asset: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  m_ActionId: d360f169-73c5-4707-9f3e-11d35f9d6a5c
 --- !u!1 &1845196364
 GameObject:
   m_ObjectHideFlags: 0
@@ -2722,6 +2725,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!114 &2086180271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc1515ab76e54f068e2f2207940fab32, type: 3}
+  m_Name: playerController/MainAttack
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.InputActionReference
+  m_Asset: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  m_ActionId: ad27f766-bb10-4128-b3a1-16fe61150a89
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

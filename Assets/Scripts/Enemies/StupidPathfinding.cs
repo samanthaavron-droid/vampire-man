@@ -38,7 +38,7 @@ public class StupidPathfinding : MonoBehaviour
         {
             //sending info to movement sys
             MovementSys.MoveTo(gameObject, _checkedDirection, speed, ref lastDir);
-            Debug.Log("Normal movement");
+            //Debug.Log("Normal movement");
         } 
         else
         {
@@ -51,7 +51,7 @@ public class StupidPathfinding : MonoBehaviour
                 _checkedDirection = new Vector2(Mathf.Sign(_targetDirection.x), 0f);
             }
             MovementSys.MoveTo(gameObject, _checkedDirection, speed, ref lastDir);
-            Debug.Log("wall movement");
+            //Debug.Log("wall movement");
         }
     }
     private bool CheckWallFront()
@@ -61,11 +61,11 @@ public class StupidPathfinding : MonoBehaviour
 
         if (hit)
         {
-            Debug.Log("wall found");
+            //Debug.Log("wall found");
             return false;
         } else
         {
-            Debug.Log("wall not found");
+            //Debug.Log("wall not found");
             return true; 
         }
     }

@@ -84,10 +84,10 @@
                 {
                     "name": "",
                     "id": "ee95742e-ad49-4db2-a619-86024e392215",
-                    "path": "<Mouse>/leftButton",
+                    "path": "<Keyboard>/k",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Keyboard&Mouse",
                     "action": "MainAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
