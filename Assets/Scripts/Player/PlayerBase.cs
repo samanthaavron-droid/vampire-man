@@ -27,6 +27,15 @@ public class PlayerBase : MonoBehaviour
         health -= damage;
 
         //knockback
-        //_movementController._movementDirection = -_movementController._movementDirection;
+        //_movementController.movementDirection = -_movementController.movementDirection;
+    }
+    public void MainAttack(InputAction.CallbackContext obj)
+    {
+        Debug.Log("main attack called");
+        _weapons.AttackMain();
+    }
+    private void OnEnable()
+    {
+        attack.action.performed += MainAttack;
     }
 }
