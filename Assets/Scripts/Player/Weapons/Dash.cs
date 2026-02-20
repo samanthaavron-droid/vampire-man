@@ -19,12 +19,13 @@ public class Dash : Weapon
 
         _playerBase.StartCoroutine(DashTimer(_playerBase)); //calling for speed increase and no collision with enemies
 
-        RaycastHit2D dashHit = Physics2D.CircleCast(_playerBase.transform.position, 0.5f, _playerBase._movementController._currentDirection, (_playerBase._movementController._currentDirection * _playerBase.speed).magnitude, LayerMask.GetMask("Enemy"));
+        RaycastHit2D[] dashHit = Physics2D.CircleCastAll(_playerBase.transform.position, 0.5f, _playerBase._movementController._currentDirection, (_playerBase._movementController._currentDirection * _playerBase.speed).magnitude, LayerMask.GetMask("Enemy"));
         //Debug.DrawRay(transform.position, (_movementController._currentDirection * _playerBase.speed) * 0.05f, Color.red, 1f);
 
-        if (dashHit)
+        foreach (var hit in dashHit)
         {
-            dashHit.collider.gameObject.GetComponent<EnemyBase>().TakeDamage(stats.damage);
+            hit.collider.gameObject.GetComponent<HealthSys>().TakeDamage(stats.damage);
+            Debug.Log("Dash Damage");
         }
 
         Debug.Log("Dash performed");
@@ -44,5 +45,13 @@ public class Dash : Weapon
     public override void SpeedUpgrade()
     {
         stats.speed += 0.5f;
+    }
+    public override void DamageUpgrade()
+    {
+        stats.damage += 1f;
+    }
+    public override void RechargeUpgrade()
+    {
+        stats.reChargeTime += stats.reChargeTime / 10f;
     }
 }

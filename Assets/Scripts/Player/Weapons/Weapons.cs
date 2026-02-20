@@ -9,8 +9,11 @@ public class Weapons : MonoBehaviour
 
     public StatsTemplate dashMainStats;
     public StatsTemplate swordStats;
+
+    public Collider2D damageZone;
     void Start()
     {
-        mainWeapon = new Dash(dashMainStats);
+        mainWeapon = new Sword(swordStats);
+        secondaryWeapon = new Dash(dashMainStats);
     }
 }

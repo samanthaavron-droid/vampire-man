@@ -25,6 +25,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "SecondAttack",
+                    "type": "Button",
+                    "id": "a94da386-f255-4a6c-a27a-babb56d80afa",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "SpeedUpgrade",
                     "type": "Button",
                     "id": "e73d89a1-ed15-44ac-9809-c7077c311ae0",
@@ -98,6 +107,17 @@
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "MainAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e3e9e380-415c-4ec3-9597-c0f45d01cd6e",
+                    "path": "<Keyboard>/l",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "SecondAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

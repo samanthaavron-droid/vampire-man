@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f02c0f7b3265204f8585167120ad81d, type: 3}
   m_Name: swordStats
   m_EditorClassIdentifier: Assembly-CSharp::Stats
-  <damage>k__BackingField: 0
-  <speed>k__BackingField: 0
-  <reChargeTime>k__BackingField: 0
+  <damage>k__BackingField: 5
+  <speed>k__BackingField: 1
+  <reChargeTime>k__BackingField: 1
+  <size>k__BackingField: 10

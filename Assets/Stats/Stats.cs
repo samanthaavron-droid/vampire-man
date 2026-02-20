@@ -6,10 +6,12 @@ public class Stats : IStats
     public float speed { get; set; }
     public float coolDown { get; set; }
     public float reChargeTime { get; set; }
+    public float size { get; set; }
     public Stats(StatsTemplate s)
     {
         damage = s.damage;
         speed = s.speed;
         reChargeTime = s.reChargeTime;
+        size = s.size;
     }
 }

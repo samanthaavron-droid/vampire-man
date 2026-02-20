@@ -37,6 +37,10 @@ public class MovementController : MonoBehaviour
             MovementSys.Move(gameObject, _currentDirection, _playerBase.speed);
             MovementSys.ChangeRot(gameObject, _currentDirection);
         }
+        else
+        {
+            MovementSys.SnapToAxis(gameObject, _currentDirection);
+        }
 
         if (_nextDirection != _currentDirection)
         {
