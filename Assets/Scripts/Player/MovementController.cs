@@ -4,18 +4,11 @@ using UnityEngine.InputSystem;
 public class MovementController : MonoBehaviour
 {
     private Vector2 _nextDirection;
-    [HideInInspector] public Vector2 _currentDirection;
-    private PlayerBase _playerBase; // Кешуємо компонент
+    private UniversalBody _body => GetComponent<UniversalBody>();
 
     public InputActionReference moveDir;
     private float changeDirectionBuffer = 0.6f;
     private float curChangeDirectionBuffer;
-
-    void Awake()
-    {
-        _playerBase = GetComponent<PlayerBase>();
-    }
-
     void Update()
     {
         Vector2 input = moveDir.action.ReadValue<Vector2>();
@@ -23,26 +16,29 @@ public class MovementController : MonoBehaviour
         {
             _nextDirection = MovementSys.GetDirection(input);
         }
-
-        if (_nextDirection != _currentDirection)
+        if (_nextDirection != _body.stats.currentDirection)
         {
             if (MovementSys.CanMove(gameObject, _nextDirection))
             {
-                _currentDirection = _nextDirection;
+                _body.stats.currentDirection = _nextDirection;
             }
         }
 
-        if (MovementSys.CanMove(gameObject, _currentDirection))
+        if (MovementSys.CanMove(gameObject, _body.stats.currentDirection))
         {
-            MovementSys.Move(gameObject, _currentDirection, _playerBase.speed);
-            MovementSys.ChangeRot(gameObject, _currentDirection);
+                MovementSys.Move(gameObject, _body.stats.currentDirection, _body.stats.movementSpeed);
+                MovementSys.ChangeRot(gameObject, _body.stats.currentDirection);
         }
         else
         {
-            MovementSys.SnapToAxis(gameObject, _currentDirection);
+            MovementSys.SnapToAxis(gameObject, _body.stats.currentDirection);
+        }
+        if(MovementSys.CanMove(gameObject, _body.stats.currentDirection) == false && _body.stats.currentDirection != _nextDirection)
+        {
+            MovementSys.SnapToAxis(gameObject, _body.stats.currentDirection);
         }
 
-        if (_nextDirection != _currentDirection)
+        if (_nextDirection != _body.stats.currentDirection)
         {
             if (curChangeDirectionBuffer > 0)
             {
@@ -50,7 +46,7 @@ public class MovementController : MonoBehaviour
             }
             else
             {
-                _nextDirection = _currentDirection;
+                _nextDirection = _body.stats.currentDirection;
                 curChangeDirectionBuffer = changeDirectionBuffer;
             }
         }

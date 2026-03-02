@@ -1,17 +1,14 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Stats", menuName = "Scriptable Objects/Stats")]
-public class StatsTemplate : ScriptableObject, IStats
+public class StatsTemplate : ScriptableObject
 {
-    [field:SerializeField] public float damage { get; private set; }
-    [field: SerializeField] public float speed { get; private set; }
-    [field: SerializeField] public float reChargeTime { get; private set; }
-    [field: SerializeField] public float size { get; private set; }
-}
-public interface IStats
-{
-    float damage { get; }
-    float speed { get; }
-    float reChargeTime { get; }
-    float size { get; }
+    public float damage;
+    public float speed;
+    public float reChargeTime;
+    public float size;
+    public float health;
+    public string tag;
+    [HideInInspector] public float movementSpeed;
+    [HideInInspector] public Vector2 currentDirection;
 }

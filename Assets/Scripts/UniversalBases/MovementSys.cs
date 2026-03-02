@@ -20,10 +20,22 @@ public static class MovementSys
     }
 
     public static void Move(GameObject entity, Vector3 direction, float speed)
+{
+    float frameDistance = speed * Time.deltaTime;
+
+    // cast specific distance away
+    RaycastHit2D hit = Physics2D.CircleCast(entity.transform.position, 0.75f, direction, frameDistance, LayerMask.GetMask("Wall"));
+
+    // if we meet a wakk
+    if (hit.collider != null)
     {
-        entity.transform.position += direction * speed * Time.deltaTime;
-        SnapToAxis(entity, direction);
+        // clamp the distance
+        frameDistance = Mathf.Max(0f, hit.distance - 0.05f);
     }
+
+    entity.transform.position += direction * frameDistance;
+    SnapToAxis(entity, direction);
+}
 
     public static void SnapToAxis(GameObject entity, Vector3 direction)
     {

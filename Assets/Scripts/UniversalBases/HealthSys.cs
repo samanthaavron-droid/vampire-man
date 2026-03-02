@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class HealthSys : MonoBehaviour
 {
-    public float health;
+    private UniversalBody _body => GetComponent<UniversalBody>();
 
     private float startHealth;
     [SerializeField] private float regenTime;
@@ -12,7 +12,7 @@ public class HealthSys : MonoBehaviour
 
     private void Start()
     {
-        startHealth = health;
+        startHealth = _body.stats.health;
     }
     private void Update()
     {
@@ -29,11 +29,11 @@ public class HealthSys : MonoBehaviour
     {
         if (!immune)
         {
-            health -= damage;
+            _body.stats.health -= damage;
             coolDown = regenTime;
         }
 
-        if(health <= 0)
+        if(_body.stats.health <= 0)
         {
             Die();
             //animations of dying and everything else
@@ -45,14 +45,14 @@ public class HealthSys : MonoBehaviour
     }
     public void RegenerationStart() //regeneration called
     {
-        if (health < startHealth)
+        if (_body.stats.health < startHealth)
         {
             InvokeRepeating("Regeneration", 1f, 1f);
         }
     }
     private void Regeneration() //regeneration
     {
-        health += (startHealth / 10);
+        _body.stats.health += (startHealth / 10);
     }
     public void Immunity(float time) //Immunity system and it's timer
     {
