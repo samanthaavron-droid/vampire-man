@@ -13,10 +13,16 @@ public class UniversalBody : MonoBehaviour
     }
     public void MainAttack()
     {
-        weapons.mainWeapon.Use(weapons, stats);
+        if (weapons.mainWeapon != null)
+        {
+            weapons.mainWeapon.Use(weapons, stats);
+        }
     }
     public void SecondaryAttack()
     {
-        weapons.secondaryWeapon.Use(weapons, stats);
+        if (weapons.secondaryWeapon != null)
+        {
+            weapons.secondaryWeapon.Use(weapons, stats);
+        }
     }
 }

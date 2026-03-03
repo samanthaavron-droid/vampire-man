@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4f02c0f7b3265204f8585167120ad81d, type: 3}
-  m_Name: dashStats
+  m_Name: Base Whip
   m_EditorClassIdentifier: Assembly-CSharp::Stats
   damage: 1
-  speed: 1
-  reChargeTime: 1
-  size: 0
+  speed: 0.5
+  reChargeTime: 2
+  size: 3
   health: 0
   tag: Enemy
   movementSpeed: 0

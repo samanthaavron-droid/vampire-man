@@ -4,7 +4,7 @@ using static UnityEngine.EventSystems.EventTrigger;
 
 public class StupidPathfinding : MonoBehaviour
 {
-    private GameObject player;
+    public GameObject player;
 
     private Vector2 _targetDirection;
     private Vector2 _checkedDirection;

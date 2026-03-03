@@ -9,6 +9,6 @@ public class StatsTemplate : ScriptableObject
     public float size;
     public float health;
     public string tag;
-    [HideInInspector] public float movementSpeed;
+    public float movementSpeed;
     [HideInInspector] public Vector2 currentDirection;
 }

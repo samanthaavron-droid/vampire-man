@@ -4,13 +4,13 @@ using UnityEngine;
 public class TrapBody : MonoBehaviour
 {
     Stats stats;
+    Weapons weapons;
 
-    private float tempSpeed;
-    private GameObject target;
     private bool trapped = false;
-    public void SetStats(Stats stats)
+    public void SetStats(Stats stats, Weapons weapons)
     {
         this.stats = stats;
+        this.weapons = weapons;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -18,16 +18,14 @@ public class TrapBody : MonoBehaviour
         {
             trapped = true;
 
-            target = collision.gameObject;
-
-            StartCoroutine(TrapAttack());            
+            StartCoroutine(TrapAttack(collision.gameObject));            
         }
     }
-    private IEnumerator TrapAttack()
+    private IEnumerator TrapAttack(GameObject target)
     {
         target.GetComponent<HealthSys>().TakeDamage(stats.damage);
 
-        tempSpeed = target.GetComponent<UniversalBody>().stats.movementSpeed;
+        float tempSpeed = target.GetComponent<UniversalBody>().stats.movementSpeed;
         target.GetComponent<UniversalBody>().stats.movementSpeed = 0f;
 
         target.transform.position = gameObject.transform.localPosition;

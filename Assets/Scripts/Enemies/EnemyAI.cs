@@ -43,7 +43,7 @@ public class EnemyAI : Seeker
                                             LayerMask.GetMask("Player"));
         if (hit)
         {
-            _body.SecondaryAttack();
+            _body.MainAttack();
         }
     }
 }

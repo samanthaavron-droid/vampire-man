@@ -13,6 +13,8 @@ public class Weapons : MonoBehaviour
     public StatsTemplate dashStats;
     public StatsTemplate swordStats;
     public StatsTemplate trapStats;
+    public StatsTemplate whipStats;
+    public StatsTemplate crossStats;
 
     public Collider2D sword;
     public GameObject trap;
@@ -36,14 +38,15 @@ public class Weapons : MonoBehaviour
             case WeaponChoice.Trap:
                 mainWeapon = new Trap(trapStats);
                 break;
-                /*
-                case WeaponChoice.Cross:
-                    mainWeapon = new Cross(crossStats);
-                    break;
-                case WeaponChoice.Whip:
-                    mainWeapon = new Whip(whipStats);
-                    break;
-                */
+            case WeaponChoice.None:
+                mainWeapon = null;
+                break;
+            case WeaponChoice.Whip:
+                mainWeapon = new Whip(whipStats);
+                break;
+            case WeaponChoice.Cross:
+                mainWeapon = new Cross(crossStats);
+                break;
         }
         switch (sWeapon)
         {
@@ -56,14 +59,15 @@ public class Weapons : MonoBehaviour
             case WeaponChoice.Trap:
                 secondaryWeapon = new Trap(trapStats);
                 break;
-                /*
-            case WeaponChoice.Cross:
-                secondaryWeapon = new Cross(crossStats);
+            case WeaponChoice.None:
+                secondaryWeapon = null;
                 break;
             case WeaponChoice.Whip:
                 secondaryWeapon = new Whip(whipStats);
                 break;
-            */
+            case WeaponChoice.Cross:
+                secondaryWeapon = new Cross(crossStats);
+                break;
         }
     }
 }
@@ -74,4 +78,5 @@ public enum WeaponChoice
     Trap,
     Cross,
     Whip,
+    None
 };

@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4f02c0f7b3265204f8585167120ad81d, type: 3}
-  m_Name: trapStats
+  m_Name: Base Dash
   m_EditorClassIdentifier: Assembly-CSharp::Stats
-  damage: 5
-  speed: 5
-  reChargeTime: 10
-  size: 1
+  damage: 1
+  speed: 1
+  reChargeTime: 2
+  size: 0
   health: 0
   tag: Enemy
   movementSpeed: 0

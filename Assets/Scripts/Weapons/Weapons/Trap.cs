@@ -22,6 +22,18 @@ public class Trap : Weapon
 
         trap = GameObject.Instantiate(weapons.trap, weapons.transform.position, Quaternion.identity);
 
-        trap.GetComponent<TrapBody>().SetStats(stats);
+        trap.GetComponent<TrapBody>().SetStats(stats, weapons);
+    }
+    public override void SpeedUpgrade()
+    {
+        stats.speed += 0.5f;
+    }
+    public override void DamageUpgrade()
+    {
+        stats.damage += 1f;
+    }
+    public override void RechargeUpgrade()
+    {
+        stats.reChargeTime += -stats.reChargeTime / 10f;
     }
 }
