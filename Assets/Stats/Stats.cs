@@ -11,6 +11,7 @@ public class Stats
     public float movementSpeed { get; set; }
     public Vector2 currentDirection { get; set; }
     public string tag { get; set; }
+    public int xp { get; set; }
     public Stats(StatsTemplate s)
     {
         damage = s.damage;
@@ -21,5 +22,6 @@ public class Stats
         movementSpeed = s.movementSpeed;
         currentDirection = s.currentDirection;
         tag = s.tag;
+        xp = s.xp;
     }
 }

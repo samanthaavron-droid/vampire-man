@@ -41,6 +41,7 @@ public class HealthSys : MonoBehaviour
     }
     public void Die() //Death system, can be called from outside
     {
+        //ScoreManager.AddXP(_body.stats.xp);
         Destroy(gameObject);
     }
     public void RegenerationStart() //regeneration called

@@ -11,4 +11,5 @@ public class StatsTemplate : ScriptableObject
     public string tag;
     public float movementSpeed;
     [HideInInspector] public Vector2 currentDirection;
+    public int xp;
 }
