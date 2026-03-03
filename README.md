@@ -1,4 +1,4 @@
-# Design Doc of "Vampiire-Man"
+# Design Doc of "Vampire-Man"
 
 *Core Loop*: Surviving a labyrinth by killing vampires and collecting upgrades
 
@@ -11,9 +11,9 @@
 *Progress*: New weapons
 
 
-*Theme*: Vampires, Dracula, Arcade
+*Theme*: Vampires, Dracula, Arcade, Church
 
-*Setting*: Dracula's castle
+*Setting*: Church
 
 *What do you collect*: Upgrades and weapons
 
