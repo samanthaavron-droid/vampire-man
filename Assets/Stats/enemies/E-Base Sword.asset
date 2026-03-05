@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f02c0f7b3265204f8585167120ad81d, type: 3}
   m_Name: E-Base Sword
   m_EditorClassIdentifier: Assembly-CSharp::Stats
-  damage: 10
-  speed: 1
-  reChargeTime: 1
+  damage: 3
+  speed: 0.5
+  reChargeTime: 2
   size: 2
   health: 0
   tag: Player
   movementSpeed: 0
   currentDirection: {x: 0, y: 0}
+  xp: 0

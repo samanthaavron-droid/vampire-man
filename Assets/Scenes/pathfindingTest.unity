@@ -11620,6 +11620,38 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!1 &363376377
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 363376378}
+  m_Layer: 0
+  m_Name: CameraHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &363376378
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 363376377}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 398306132}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &373915398
 GameObject:
   m_ObjectHideFlags: 0
@@ -12399,12 +12431,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 398306129}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -1.54, y: -1.48, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 363376378}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &398306133
 MonoBehaviour:
@@ -12907,6 +12939,97 @@ SpriteRenderer:
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_SpriteSortPoint: 0
+--- !u!1 &422808610
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 422808611}
+  - component: {fileID: 422808612}
+  m_Layer: 7
+  m_Name: Square
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &422808611
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 422808610}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.71, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1293670467}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &422808612
+SpriteRenderer:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 422808610}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 0.16, y: 0.16}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -15777,8 +15900,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 514554573}
-  - component: {fileID: 514554574}
   - component: {fileID: 514554576}
+  - component: {fileID: 514554574}
   - component: {fileID: 514554577}
   - component: {fileID: 514554579}
   - component: {fileID: 514554578}
@@ -15818,8 +15941,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a50144d4b6ce8de419db771104294f0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
-  target: {fileID: 1293670467}
-  rayCastCheckDistance: 5
+  target: []
+  randomWeapons: 1
 --- !u!61 &514554576
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -15891,7 +16014,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e69a21e6c9b73e42a4f3336433415c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Weapons
-  mWeapon: 0
+  mWeapon: 5
   sWeapon: 5
   dashStats: {fileID: 11400000, guid: 8ad4e07c6256db843be3f4532366fa36, type: 2}
   swordStats: {fileID: 11400000, guid: 7c27e0ed5e9df7841bae3a074c1ef127, type: 2}
@@ -15940,6 +16063,37 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!1 &521113330
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 521113331}
+  m_Layer: 7
+  m_Name: Left
+  m_TagString: PathDot
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &521113331
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 521113330}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.81, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1293670467}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &525881457
 GameObject:
   m_ObjectHideFlags: 0
@@ -19678,6 +19832,37 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!1 &646159748
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 646159749}
+  m_Layer: 7
+  m_Name: Front
+  m_TagString: PathDot
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &646159749
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 646159748}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1293670467}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &652917292
 GameObject:
   m_ObjectHideFlags: 0
@@ -24488,8 +24673,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 800490393}
-  - component: {fileID: 800490394}
   - component: {fileID: 800490396}
+  - component: {fileID: 800490394}
   - component: {fileID: 800490397}
   - component: {fileID: 800490399}
   - component: {fileID: 800490398}
@@ -24529,8 +24714,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a50144d4b6ce8de419db771104294f0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
-  target: {fileID: 1293670467}
-  rayCastCheckDistance: 5
+  target: []
+  randomWeapons: 1
 --- !u!61 &800490396
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -24602,7 +24787,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e69a21e6c9b73e42a4f3336433415c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Weapons
-  mWeapon: 0
+  mWeapon: 5
   sWeapon: 5
   dashStats: {fileID: 11400000, guid: 8ad4e07c6256db843be3f4532366fa36, type: 2}
   swordStats: {fileID: 11400000, guid: 7c27e0ed5e9df7841bae3a074c1ef127, type: 2}
@@ -26322,8 +26507,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 861267890}
-  - component: {fileID: 861267891}
   - component: {fileID: 861267893}
+  - component: {fileID: 861267891}
   - component: {fileID: 861267894}
   - component: {fileID: 861267896}
   - component: {fileID: 861267895}
@@ -26363,8 +26548,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a50144d4b6ce8de419db771104294f0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
-  target: {fileID: 1293670467}
-  rayCastCheckDistance: 5
+  target: []
+  randomWeapons: 1
 --- !u!61 &861267893
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -26436,7 +26621,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e69a21e6c9b73e42a4f3336433415c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Weapons
-  mWeapon: 0
+  mWeapon: 5
   sWeapon: 5
   dashStats: {fileID: 11400000, guid: 8ad4e07c6256db843be3f4532366fa36, type: 2}
   swordStats: {fileID: 11400000, guid: 7c27e0ed5e9df7841bae3a074c1ef127, type: 2}
@@ -27316,6 +27501,50 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!1 &905137696
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 905137698}
+  - component: {fileID: 905137697}
+  m_Layer: 0
+  m_Name: CameraShake
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &905137697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 905137696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 758004dea37f1564f836af6973260d21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraShake
+--- !u!4 &905137698
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 905137696}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &919299635
 GameObject:
   m_ObjectHideFlags: 0
@@ -30061,8 +30290,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1055912054}
-  - component: {fileID: 1055912055}
   - component: {fileID: 1055912057}
+  - component: {fileID: 1055912055}
   - component: {fileID: 1055912058}
   - component: {fileID: 1055912060}
   - component: {fileID: 1055912059}
@@ -30102,8 +30331,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a50144d4b6ce8de419db771104294f0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
-  target: {fileID: 1293670467}
-  rayCastCheckDistance: 5
+  target: []
+  randomWeapons: 1
 --- !u!61 &1055912057
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -30175,7 +30404,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e69a21e6c9b73e42a4f3336433415c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Weapons
-  mWeapon: 0
+  mWeapon: 5
   sWeapon: 5
   dashStats: {fileID: 11400000, guid: 8ad4e07c6256db843be3f4532366fa36, type: 2}
   swordStats: {fileID: 11400000, guid: 7c27e0ed5e9df7841bae3a074c1ef127, type: 2}
@@ -33929,8 +34158,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1194995874}
-  - component: {fileID: 1194995875}
   - component: {fileID: 1194995877}
+  - component: {fileID: 1194995875}
   - component: {fileID: 1194995878}
   - component: {fileID: 1194995880}
   - component: {fileID: 1194995879}
@@ -33970,8 +34199,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a50144d4b6ce8de419db771104294f0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
-  target: {fileID: 1293670467}
-  rayCastCheckDistance: 5
+  target: []
+  randomWeapons: 1
 --- !u!61 &1194995877
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -34043,7 +34272,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e69a21e6c9b73e42a4f3336433415c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Weapons
-  mWeapon: 0
+  mWeapon: 5
   sWeapon: 5
   dashStats: {fileID: 11400000, guid: 8ad4e07c6256db843be3f4532366fa36, type: 2}
   swordStats: {fileID: 11400000, guid: 7c27e0ed5e9df7841bae3a074c1ef127, type: 2}
@@ -35164,8 +35393,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1224205790}
-  - component: {fileID: 1224205791}
   - component: {fileID: 1224205793}
+  - component: {fileID: 1224205791}
   - component: {fileID: 1224205794}
   - component: {fileID: 1224205796}
   - component: {fileID: 1224205795}
@@ -35205,8 +35434,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a50144d4b6ce8de419db771104294f0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
-  target: {fileID: 1293670467}
-  rayCastCheckDistance: 5
+  target: []
+  randomWeapons: 1
 --- !u!61 &1224205793
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -35278,7 +35507,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e69a21e6c9b73e42a4f3336433415c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Weapons
-  mWeapon: 0
+  mWeapon: 5
   sWeapon: 5
   dashStats: {fileID: 11400000, guid: 8ad4e07c6256db843be3f4532366fa36, type: 2}
   swordStats: {fileID: 11400000, guid: 7c27e0ed5e9df7841bae3a074c1ef127, type: 2}
@@ -38287,7 +38516,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1293670467}
-  - component: {fileID: 1293670466}
   - component: {fileID: 1293670465}
   - component: {fileID: 1293670464}
   - component: {fileID: 1293670463}
@@ -38431,67 +38659,8 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.71, y: 1}
   m_EdgeRadius: 0
---- !u!212 &1293670466
-SpriteRenderer:
-  serializedVersion: 2
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1293670460}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_MaskInteraction: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.50628924, g: 1, b: 0.6556943, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_SpriteSortPoint: 0
 --- !u!4 &1293670467
 Transform:
   m_ObjectHideFlags: 0
@@ -38501,10 +38670,15 @@ Transform:
   m_GameObject: {fileID: 1293670460}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.5, y: -9.37, z: 0}
-  m_LocalScale: {x: 0.71, y: 1, z: 1}
+  m_LocalPosition: {x: 1.5, y: -9.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 646159749}
+  - {fileID: 521113331}
+  - {fileID: 1563493429}
+  - {fileID: 1526495692}
+  - {fileID: 422808611}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1293670468
@@ -38519,8 +38693,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e69a21e6c9b73e42a4f3336433415c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponControll
-  mWeapon: 0
-  sWeapon: 3
+  mWeapon: 1
+  sWeapon: 0
   dashStats: {fileID: 11400000, guid: ff8c0fd92d94f9248a1fed5731fefa53, type: 2}
   swordStats: {fileID: 11400000, guid: 63b28e1ba200f27419f086a29af2045b, type: 2}
   trapStats: {fileID: 11400000, guid: ea1c271868a5b4c48bc9c1d76e69a518, type: 2}
@@ -39162,8 +39336,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1347636189}
-  - component: {fileID: 1347636190}
   - component: {fileID: 1347636192}
+  - component: {fileID: 1347636190}
   - component: {fileID: 1347636193}
   - component: {fileID: 1347636195}
   - component: {fileID: 1347636194}
@@ -39203,8 +39377,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a50144d4b6ce8de419db771104294f0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
-  target: {fileID: 1293670467}
-  rayCastCheckDistance: 5
+  target: []
+  randomWeapons: 1
 --- !u!61 &1347636192
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -39276,7 +39450,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e69a21e6c9b73e42a4f3336433415c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Weapons
-  mWeapon: 0
+  mWeapon: 5
   sWeapon: 5
   dashStats: {fileID: 11400000, guid: 8ad4e07c6256db843be3f4532366fa36, type: 2}
   swordStats: {fileID: 11400000, guid: 7c27e0ed5e9df7841bae3a074c1ef127, type: 2}
@@ -39886,8 +40060,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1365160136}
-  - component: {fileID: 1365160137}
   - component: {fileID: 1365160139}
+  - component: {fileID: 1365160137}
   - component: {fileID: 1365160140}
   - component: {fileID: 1365160142}
   - component: {fileID: 1365160141}
@@ -39927,8 +40101,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a50144d4b6ce8de419db771104294f0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
-  target: {fileID: 1293670467}
-  rayCastCheckDistance: 5
+  target: []
+  randomWeapons: 1
 --- !u!61 &1365160139
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -40000,7 +40174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e69a21e6c9b73e42a4f3336433415c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Weapons
-  mWeapon: 0
+  mWeapon: 5
   sWeapon: 5
   dashStats: {fileID: 11400000, guid: 8ad4e07c6256db843be3f4532366fa36, type: 2}
   swordStats: {fileID: 11400000, guid: 7c27e0ed5e9df7841bae3a074c1ef127, type: 2}
@@ -40566,8 +40740,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1368869305}
-  - component: {fileID: 1368869306}
   - component: {fileID: 1368869308}
+  - component: {fileID: 1368869306}
   - component: {fileID: 1368869309}
   - component: {fileID: 1368869311}
   - component: {fileID: 1368869310}
@@ -40607,8 +40781,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a50144d4b6ce8de419db771104294f0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
-  target: {fileID: 1293670467}
-  rayCastCheckDistance: 5
+  target: []
+  randomWeapons: 1
 --- !u!61 &1368869308
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -40680,7 +40854,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e69a21e6c9b73e42a4f3336433415c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Weapons
-  mWeapon: 0
+  mWeapon: 5
   sWeapon: 5
   dashStats: {fileID: 11400000, guid: 8ad4e07c6256db843be3f4532366fa36, type: 2}
   swordStats: {fileID: 11400000, guid: 7c27e0ed5e9df7841bae3a074c1ef127, type: 2}
@@ -44589,6 +44763,37 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!1 &1526495691
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1526495692}
+  m_Layer: 7
+  m_Name: Back
+  m_TagString: PathDot
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1526495692
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1526495691}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1293670467}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1526687166
 GameObject:
   m_ObjectHideFlags: 0
@@ -45743,6 +45948,37 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!1 &1563493428
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1563493429}
+  m_Layer: 7
+  m_Name: Right
+  m_TagString: PathDot
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1563493429
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1563493428}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.81, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1293670467}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1563677305
 GameObject:
   m_ObjectHideFlags: 0
@@ -50588,8 +50824,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a50144d4b6ce8de419db771104294f0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAI
-  target: {fileID: 1293670467}
-  rayCastCheckDistance: 5
+  target: []
+  randomWeapons: 1
 --- !u!61 &1761912093
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -50661,7 +50897,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e69a21e6c9b73e42a4f3336433415c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Weapons
-  mWeapon: 0
+  mWeapon: 5
   sWeapon: 5
   dashStats: {fileID: 11400000, guid: 8ad4e07c6256db843be3f4532366fa36, type: 2}
   swordStats: {fileID: 11400000, guid: 7c27e0ed5e9df7841bae3a074c1ef127, type: 2}
@@ -59903,7 +60139,8 @@ SpriteRenderer:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 398306132}
+  - {fileID: 905137698}
+  - {fileID: 363376378}
   - {fileID: 1293670467}
   - {fileID: 1055912054}
   - {fileID: 800490393}

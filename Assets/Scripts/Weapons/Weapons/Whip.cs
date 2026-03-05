@@ -19,11 +19,26 @@ public class Whip : Weapon
 
         stats.coolDown = Time.time + stats.reChargeTime;
 
-        RaycastHit2D[] whip = Physics2D.CircleCastAll(user.gameObject.transform.position,
-                                                        0.5f,
-                                                        userStats.currentDirection,
-                                                        stats.size,
-                                                        LayerMask.GetMask(stats.tag));
+        RaycastHit2D[] whip = null;
+
+        if (stats.tag == "Player")
+        {
+            whip = Physics2D.CircleCastAll(user.gameObject.transform.position,
+                                                                    0.5f,
+                                                                    userStats.currentDirection,
+                                                                    stats.size,
+                                                                    LayerMask.GetMask(stats.tag));
+        } else if (stats.tag == "Enemy")
+        {
+            whip = Physics2D.CircleCastAll(user.gameObject.transform.position,
+                                                                                0.5f,
+                                                                                -userStats.currentDirection,
+                                                                                stats.size,
+                                                                                LayerMask.GetMask(stats.tag));
+        }
+
+        if (whip == null) return;
+
         foreach (var hit in whip)
         {
             hit.collider.gameObject.GetComponent<HealthSys>().TakeDamage(stats.damage);
@@ -41,7 +56,7 @@ public class Whip : Weapon
     }
     public override void SpeedUpgrade()
     {
-        stats.speed += 0.2f;
+        stats.speed += 0.1f;
     }
     public override void DamageUpgrade()
     {

@@ -17,21 +17,22 @@ public class Dash : Weapon
 
         stats.coolDown = Time.time + stats.reChargeTime;
 
-        user.StartCoroutine(DashTimer(userStats)); //calling for speed increase
+        user.StartCoroutine(DashTimer(userStats, user)); //calling for speed increase
 
         RaycastHit2D[] dashHit = Physics2D.CircleCastAll(user.gameObject.transform.position, 
                                                         0.5f,
                                                         userStats.currentDirection, 
-                                                        (userStats.currentDirection * stats.speed).magnitude, 
+                                                        userStats.movementSpeed * 0.05f, 
                                                         LayerMask.GetMask(userStats.tag));
         foreach (var hit in dashHit)
         {
             hit.collider.gameObject.GetComponent<HealthSys>().TakeDamage(stats.damage);        
         }
     }
-    public IEnumerator DashTimer(Stats userStats)
+    public IEnumerator DashTimer(Stats userStats, Weapons user)
     {
-        userStats.movementSpeed = userStats.movementSpeed * stats.speed * 10;        
+        userStats.movementSpeed = userStats.movementSpeed * stats.speed * 10;
+        user.gameObject.GetComponent<HealthSys>().Immunity(0.05f);
         //Play animation
 
         yield return new WaitForSeconds(0.05f);

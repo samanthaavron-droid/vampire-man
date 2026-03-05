@@ -17,16 +17,20 @@ public class SwordBody : MonoBehaviour
         {
             collision.gameObject.GetComponent<HealthSys>().TakeDamage(stats.damage);
             StartCoroutine(Stun(collision.gameObject.GetComponent<UniversalBody>()));
+        } else
+        {
+            FallBack();
         }
     }
     private IEnumerator Stun(UniversalBody target)
     {
-        if (target.stats.movementSpeed != 0)
+        if (target.stats.movementSpeed != 0 && target.gameObject.CompareTag("Enemy"))
         {
             targets.Add(target);
 
             float tempSpeed = target.stats.movementSpeed; //recording
             target.stats.movementSpeed = 0; //stunning
+            //do something like stun VFX
 
             yield return new WaitForSeconds(stats.speed);
 
@@ -34,6 +38,10 @@ public class SwordBody : MonoBehaviour
             targets.Remove(target);
 
             Deleter();
+        } else if (target.gameObject.CompareTag("Player"))
+        {
+            yield return new WaitForSeconds(stats.speed);
+            Destroy(gameObject);
         }
     }
     private void Deleter()
@@ -45,6 +53,11 @@ public class SwordBody : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+    private IEnumerator FallBack()
+    {
+        yield return new WaitForSeconds(stats.speed);
+        Destroy(gameObject);
     }
     private void LateUpdate()
     {

@@ -38,10 +38,24 @@ public class HealthSys : MonoBehaviour
             Die();
             //animations of dying and everything else
         }
+        //stolen screenshake
+        if (_body.gameObject.tag == "Player")
+        {
+            if (damage >= startHealth / 2)
+            {
+                CameraShake.instance.Shake(CameraShake.Strength.strongShake);
+            } else if (damage >= startHealth / 5)
+            {
+                CameraShake.instance.Shake(CameraShake.Strength.mediumShake);
+            } else if (damage >= startHealth / 10)
+            {
+                CameraShake.instance.Shake(CameraShake.Strength.weakShake);
+            }
+        }
     }
     public void Die() //Death system, can be called from outside
     {
-        //ScoreManager.AddXP(_body.stats.xp);
+        ScoreManager.AddXP(_body.stats.xp);
         Destroy(gameObject);
     }
     public void RegenerationStart() //regeneration called

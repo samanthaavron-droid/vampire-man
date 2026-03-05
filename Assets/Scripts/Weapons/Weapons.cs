@@ -75,8 +75,8 @@ public enum WeaponChoice
 {
     Sword,
     Dash,
+    Whip,
     Trap,
     Cross,
-    Whip,
     None
 };
