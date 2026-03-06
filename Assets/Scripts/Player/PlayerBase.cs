@@ -9,6 +9,12 @@ public class PlayerBase : MonoBehaviour
 
     public InputActionReference attack;
     public InputActionReference secondAttack;
+
+    public static bool dead;
+    private void Start()
+    {
+        dead = false;
+    }
     public void MainAttack(InputAction.CallbackContext obj)
     {
         _body.MainAttack();

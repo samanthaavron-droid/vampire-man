@@ -25,4 +25,44 @@ public class UniversalBody : MonoBehaviour
             weapons.secondaryWeapon.Use(weapons, stats);
         }
     }
+    public void MainDamageUpgrade()
+    {
+        weapons.mainWeapon.DamageUpgrade();
+        ScoreManager.CloseMenu();
+    }
+    public void MainSpeedUpgrade()
+    {
+        weapons.mainWeapon.SpeedUpgrade();
+        ScoreManager.CloseMenu();
+    }
+    public void MainSizeUpgrade()
+    {
+        weapons.mainWeapon.SizeUpgrade();
+        ScoreManager.CloseMenu();
+    }
+    public void MainRechargeUpgrade()
+    {
+        weapons.mainWeapon.RechargeUpgrade();
+        ScoreManager.CloseMenu();
+    }
+    public void SecondaryDamageUpgrade()
+    {           
+        weapons.secondaryWeapon.DamageUpgrade();
+        ScoreManager.CloseMenu();
+    }           
+    public void SecondarySpeedUpgrade()
+    {           
+        weapons.secondaryWeapon.SpeedUpgrade();
+        ScoreManager.CloseMenu();
+    }           
+    public void SecondarySizeUpgrade()
+    {           
+        weapons.secondaryWeapon.SizeUpgrade();
+        ScoreManager.CloseMenu();
+    }           
+    public void SecondaryRechargeUpgrade()
+    {           
+        weapons.secondaryWeapon.RechargeUpgrade();
+        ScoreManager.CloseMenu();
+    }
 }

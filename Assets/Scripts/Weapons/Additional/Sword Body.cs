@@ -59,7 +59,7 @@ public class SwordBody : MonoBehaviour
         yield return new WaitForSeconds(stats.speed);
         Destroy(gameObject);
     }
-    private void LateUpdate()
+    private void Update()
     {
         transform.position = weapons.transform.position;
     }

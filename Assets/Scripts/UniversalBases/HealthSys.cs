@@ -1,9 +1,11 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HealthSys : MonoBehaviour
 {
     private UniversalBody _body => GetComponent<UniversalBody>();
+    private ScoreManager _scoreManager;
 
     private float startHealth;
     [SerializeField] private float regenTime;
@@ -13,6 +15,7 @@ public class HealthSys : MonoBehaviour
     private void Start()
     {
         startHealth = _body.stats.health;
+        _scoreManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<ScoreManager>();
     }
     private void Update()
     {
@@ -35,8 +38,13 @@ public class HealthSys : MonoBehaviour
 
         if(_body.stats.health <= 0)
         {
-            Die();
-            //animations of dying and everything else
+            if (_body.gameObject.tag == "Player")
+            {
+                Time.timeScale = 0;
+            } else
+            {
+                Die(); //animations of dying and everything else
+            }
         }
         //stolen screenshake
         if (_body.gameObject.tag == "Player")
@@ -55,7 +63,7 @@ public class HealthSys : MonoBehaviour
     }
     public void Die() //Death system, can be called from outside
     {
-        ScoreManager.AddXP(_body.stats.xp);
+        _scoreManager.AddXP(_body.stats.xp);
         Destroy(gameObject);
     }
     public void RegenerationStart() //regeneration called
