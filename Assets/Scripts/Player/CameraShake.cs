@@ -75,11 +75,11 @@ public class CameraShake : MonoBehaviour
         switch (shakeStrength)
         {
             case Strength.weakShake:
-                return new Vector2(0.10f, 0.02f);    //Configure values here
+                return new Vector2(0.20f, 0.04f);    //Configure values here
             case Strength.mediumShake:
-                return new Vector2(0.18f, 0.04f);    //Configure values here
+                return new Vector2(0.30f, 0.06f);    //Configure values here
             case Strength.strongShake:
-                return new Vector2(0.36f, 0.06f);    //Configure values here
+                return new Vector2(0.40f, 0.10f);    //Configure values here
             default:
                 return new Vector2(0.10f, 0.02f);
         }

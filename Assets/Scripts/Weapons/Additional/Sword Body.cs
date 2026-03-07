@@ -19,7 +19,7 @@ public class SwordBody : MonoBehaviour
             StartCoroutine(Stun(collision.gameObject.GetComponent<UniversalBody>()));
         } else
         {
-            FallBack();
+            StartCoroutine(FallBack());
         }
     }
     private IEnumerator Stun(UniversalBody target)

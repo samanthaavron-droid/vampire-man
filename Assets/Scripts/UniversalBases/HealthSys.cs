@@ -41,6 +41,7 @@ public class HealthSys : MonoBehaviour
             if (_body.gameObject.tag == "Player")
             {
                 Time.timeScale = 0;
+                PlayerBase.dead = true;
             } else
             {
                 Die(); //animations of dying and everything else
@@ -49,13 +50,13 @@ public class HealthSys : MonoBehaviour
         //stolen screenshake
         if (_body.gameObject.tag == "Player")
         {
-            if (damage >= startHealth / 2)
+            if (damage >= startHealth / 5)
             {
                 CameraShake.instance.Shake(CameraShake.Strength.strongShake);
-            } else if (damage >= startHealth / 5)
+            } else if (damage >= startHealth / 10)
             {
                 CameraShake.instance.Shake(CameraShake.Strength.mediumShake);
-            } else if (damage >= startHealth / 10)
+            } else
             {
                 CameraShake.instance.Shake(CameraShake.Strength.weakShake);
             }

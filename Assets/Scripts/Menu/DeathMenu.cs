@@ -1,21 +1,23 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
 
 public class DeathMenu : MonoBehaviour
 {
-    public GameObject highScore;
+    public GameObject deathUI;
+
     public string thisScene;
     void Start()
     {
-        //highScore.text = "High Score: " + PlayerPrefs.GetInt("highScore").ToString();
-        highScore.gameObject.SetActive(false);
+        deathUI.GetComponentInChildren<TextMeshProUGUI>().text = "High Score:\n" + PlayerPrefs.GetInt("highScore").ToString();
+        deathUI.gameObject.SetActive(false);
     }
     private void Update()
     {
         if (PlayerBase.dead == true)
         {
-            highScore.gameObject.SetActive(true);
+            deathUI.gameObject.SetActive(true);
         }
     }
     public void Restart()

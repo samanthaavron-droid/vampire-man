@@ -15,7 +15,7 @@ MonoBehaviour:
   damage: 3
   speed: 0.5
   reChargeTime: 2
-  size: 2
+  size: 3
   health: 0
   tag: Enemy
   movementSpeed: 0

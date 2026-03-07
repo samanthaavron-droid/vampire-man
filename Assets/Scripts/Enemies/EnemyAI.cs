@@ -7,8 +7,12 @@ public class EnemyAI : Seeker
     private UniversalBody _body => GetComponent<UniversalBody>();
     public bool randomWeapons;
 
+    private GameObject player;
+
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
+
         if (randomWeapons)
             StartingWeapon();
 
@@ -33,6 +37,16 @@ public class EnemyAI : Seeker
             Vector3 dir = path[targetIndex].Position - (Vector2)transform.position;
             _body.stats.currentDirection = MovementSys.GetDirection(dir);
             transform.position += (Vector3)_body.stats.currentDirection * _body.stats.movementSpeed * Time.deltaTime;
+        }
+
+        //code that stops enemies from stopping 2 feet from the player
+        if (Vector2.Distance(transform.position, player.transform.position) < 3f)
+        {
+            ignorePoints = true;
+        }
+        else
+        {
+            ignorePoints = false;
         }
     }
     private void AttackCheck()

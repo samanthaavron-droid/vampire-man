@@ -14,6 +14,7 @@ public class PlayerBase : MonoBehaviour
     private void Start()
     {
         dead = false;
+        Time.timeScale = 1;
     }
     public void MainAttack(InputAction.CallbackContext obj)
     {
