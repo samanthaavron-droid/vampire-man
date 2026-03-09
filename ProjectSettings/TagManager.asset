@@ -8,6 +8,7 @@ TagManager:
   - PathDot
   - Manager
   - weaponUpgrades
+  - spawnPos
   layers:
   - Default
   - TransparentFX

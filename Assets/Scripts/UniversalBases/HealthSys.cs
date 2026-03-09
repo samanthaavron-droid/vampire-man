@@ -1,10 +1,11 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class HealthSys : MonoBehaviour
 {
-    private UniversalBody _body => GetComponent<UniversalBody>();
+    private UniversalBody _body;
     private ScoreManager _scoreManager;
 
     private float startHealth;
@@ -14,6 +15,7 @@ public class HealthSys : MonoBehaviour
 
     private void Start()
     {
+        _body = GetComponent<UniversalBody>();
         startHealth = _body.stats.health;
         _scoreManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<ScoreManager>();
     }
@@ -44,7 +46,7 @@ public class HealthSys : MonoBehaviour
                 PlayerBase.dead = true;
             } else
             {
-                Die(); //animations of dying and everything else
+                GetComponent<EnemyAI>().Die(); //animations of dying and everything else
             }
         }
         //stolen screenshake
@@ -61,11 +63,6 @@ public class HealthSys : MonoBehaviour
                 CameraShake.instance.Shake(CameraShake.Strength.weakShake);
             }
         }
-    }
-    public void Die() //Death system, can be called from outside
-    {
-        _scoreManager.AddXP(_body.stats.xp);
-        Destroy(gameObject);
     }
     public void RegenerationStart() //regeneration called
     {

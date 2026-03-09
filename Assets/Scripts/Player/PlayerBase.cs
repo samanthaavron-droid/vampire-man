@@ -1,20 +1,32 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 using static Weapons;
 
 public class PlayerBase : MonoBehaviour
 {
-    private UniversalBody _body => GetComponent<UniversalBody>();
-    [HideInInspector] public MovementController _movementController => GetComponent<MovementController>();
+    private UniversalBody _body;
+    [HideInInspector] public MovementController _movementController;
 
     public InputActionReference attack;
     public InputActionReference secondAttack;
 
+    public GameObject weaponChoiceUI;
+    public GameObject firstButtonWeapon;
+
     public static bool dead;
+    public bool chooseWeapon;
     private void Start()
     {
+        _movementController = GetComponent<MovementController>(); 
+        _body = GetComponent<UniversalBody>();
+
         dead = false;
-        Time.timeScale = 1;
+
+        weaponChoiceUI.SetActive(false);
+
+        if (chooseWeapon)
+            StartWeapon();
     }
     public void MainAttack(InputAction.CallbackContext obj)
     {
@@ -28,5 +40,38 @@ public class PlayerBase : MonoBehaviour
     {
         attack.action.performed += MainAttack;
         secondAttack.action.performed += SecondaryAttack;
+    }
+    private void StartWeapon()
+    {
+        Time.timeScale = 0f;
+
+        weaponChoiceUI.SetActive(true);
+        GetComponent<PlayerInput>().SwitchCurrentActionMap("UI"); //switching input
+
+        EventSystem.current.SetSelectedGameObject(firstButtonWeapon);
+    }
+    private void ExitStartWeaponMenu()
+    {
+        Time.timeScale = 1f;
+        weaponChoiceUI.SetActive(false);
+        GetComponent<PlayerInput>().SwitchCurrentActionMap("playerController"); //switching input
+    }
+    public void SwordChoice()
+    {
+        _body.weapons.mWeapon = WeaponChoice.Sword;
+        _body.weapons.SetWeapon();
+        ExitStartWeaponMenu();
+    }
+    public void DashChoice()
+    {
+        _body.weapons.mWeapon = WeaponChoice.Dash;
+        _body.weapons.SetWeapon();
+        ExitStartWeaponMenu();
+    }
+    public void WhipChoice()
+    {
+        _body.weapons.mWeapon = WeaponChoice.Whip;
+        _body.weapons.SetWeapon();
+        ExitStartWeaponMenu();
     }
 }

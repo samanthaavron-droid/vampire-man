@@ -20,7 +20,7 @@ public class Dash : Weapon
         user.StartCoroutine(DashTimer(userStats, user)); //calling for speed increase
 
         RaycastHit2D[] dashHit = Physics2D.CircleCastAll(user.gameObject.transform.position, 
-                                                        0.5f,
+                                                        stats.size,
                                                         userStats.currentDirection, 
                                                         userStats.movementSpeed * 0.05f, 
                                                         LayerMask.GetMask(userStats.tag));
@@ -51,5 +51,9 @@ public class Dash : Weapon
     public override void RechargeUpgrade()
     {
         stats.reChargeTime += -stats.reChargeTime / 10f;
+    }
+    public override void SizeUpgrade()
+    {
+        stats.size += 0.2f;
     }
 }

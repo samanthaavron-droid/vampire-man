@@ -15,8 +15,9 @@ MonoBehaviour:
   damage: 1
   speed: 1
   reChargeTime: 2
-  size: 0
+  size: 0.5
   health: 0
   tag: Enemy
   movementSpeed: 0
   currentDirection: {x: 0, y: 0}
+  xp: 0

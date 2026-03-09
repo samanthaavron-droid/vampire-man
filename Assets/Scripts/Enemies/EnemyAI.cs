@@ -1,17 +1,23 @@
 ﻿using NUnit.Framework;
+using System;
 using System.IO;
 using UnityEngine;
 
 public class EnemyAI : Seeker
 {
-    private UniversalBody _body => GetComponent<UniversalBody>();
+    private UniversalBody _body;
+    private ScoreManager _scoreManager;
     public bool randomWeapons;
+
+    public event Action<EnemyAI> OnDeath;
 
     private GameObject player;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        _body = GetComponent<UniversalBody>();
+        _scoreManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<ScoreManager>();
 
         if (randomWeapons)
             StartingWeapon();
@@ -51,7 +57,7 @@ public class EnemyAI : Seeker
     }
     private void AttackCheck()
     {
-        InvokeRepeating("Attack", 1f, _body.weapons.mainWeapon.stats.reChargeTime);
+        InvokeRepeating("Attack", 1f, 0.1f);
     }
     private void Attack()
     {
@@ -93,5 +99,12 @@ public class EnemyAI : Seeker
         _body.weapons.mWeapon = (WeaponChoice)values.GetValue(UnityEngine.Random.Range(0, 4)); //skipping Cross and None
         Debug.Log(_body.weapons.mWeapon);
         _body.weapons.SetWeapon();
+    }
+    public void Die() //Death system, can be called from outside
+    {
+        OnDeath?.Invoke(this);
+
+        _scoreManager.AddXP(_body.stats.xp);
+        Destroy(gameObject);
     }
 }
