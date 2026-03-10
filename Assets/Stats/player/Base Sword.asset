@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f02c0f7b3265204f8585167120ad81d, type: 3}
   m_Name: Base Sword
   m_EditorClassIdentifier: Assembly-CSharp::Stats
-  damage: 100
+  damage: 4
   speed: 0.5
   reChargeTime: 2
   size: 3

@@ -9,12 +9,11 @@ public class DeathMenu : MonoBehaviour
 {
     public GameObject deathUI;
     public GameObject restart;
-    private PlayerInput playerInp;
+    public PlayerInput playerInp;
 
     public string thisScene;
     void Start()
     {
-        playerInp = gameObject.GetComponent<ScoreManager>().playerInput;
         deathUI.GetComponentInChildren<TextMeshProUGUI>().text = "High Score:\n" + PlayerPrefs.GetInt("highScore").ToString();
         deathUI.gameObject.SetActive(false);
     }

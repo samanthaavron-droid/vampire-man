@@ -17,7 +17,7 @@ public class EnemyAI : Seeker
     {
         player = GameObject.FindGameObjectWithTag("Player");
         _body = GetComponent<UniversalBody>();
-        _scoreManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<ScoreManager>();
+        _scoreManager = GameObject.FindGameObjectWithTag("scoreManager").GetComponent<ScoreManager>();
 
         if (randomWeapons)
             StartingWeapon();
@@ -103,8 +103,9 @@ public class EnemyAI : Seeker
     public void Die() //Death system, can be called from outside
     {
         OnDeath?.Invoke(this);
-
+        Debug.Log(gameObject.name + " died");
         _scoreManager.AddXP(_body.stats.xp);
+        Debug.Log("XP Added: " + _body.stats.xp);
         Destroy(gameObject);
     }
 }

@@ -6,7 +6,7 @@ public class UniversalBody : MonoBehaviour
 
     public StatsTemplate StatsTemplate;
     public Stats stats;
-
+    public bool spedUp;
     void Awake()
     {
         weapons = GetComponent<Weapons>(); 

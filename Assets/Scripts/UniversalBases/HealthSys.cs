@@ -17,7 +17,7 @@ public class HealthSys : MonoBehaviour
     {
         _body = GetComponent<UniversalBody>();
         startHealth = _body.stats.health;
-        _scoreManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<ScoreManager>();
+        _scoreManager = GameObject.FindGameObjectWithTag("scoreManager").GetComponent<ScoreManager>();
     }
     private void Update()
     {
@@ -46,7 +46,7 @@ public class HealthSys : MonoBehaviour
                 PlayerBase.dead = true;
             } else
             {
-                GetComponent<EnemyAI>().Die(); //animations of dying and everything else
+                gameObject.GetComponent<EnemyAI>().Die(); //animations of dying and everything else
             }
         }
         //stolen screenshake

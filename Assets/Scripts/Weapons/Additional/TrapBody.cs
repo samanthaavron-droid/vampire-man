@@ -16,9 +16,15 @@ public class TrapBody : MonoBehaviour
     {
         if (collision.gameObject.CompareTag(stats.tag) && trapped == false)
         {
-            trapped = true;
+            if (collision.gameObject.GetComponent<UniversalBody>().spedUp == false)
+            {
+                trapped = true;
 
-            StartCoroutine(TrapAttack(collision.gameObject));            
+                StartCoroutine(TrapAttack(collision.gameObject));
+            } else
+            {
+                return;
+            }
         }
     }
     private IEnumerator TrapAttack(GameObject target)

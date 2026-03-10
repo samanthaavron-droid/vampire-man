@@ -16,11 +16,16 @@ public class WaveManager : MonoBehaviour
     private List<EnemyAI> activeEnemies = new List<EnemyAI>();
     void Start()
     {
-        spawnPos = GameObject.FindGameObjectsWithTag("spawnPos");
+        if (spawnPos == null)
+        {
+            spawnPos = GameObject.FindGameObjectsWithTag("spawnPos");
+        }
+
         foreach (var count in countDown)
         {
             count.gameObject.SetActive(false);
         }
+        StartCoroutine(NewWave());
     }
     private void Spawner()
     {
@@ -60,26 +65,26 @@ public class WaveManager : MonoBehaviour
     }
     private IEnumerator NewWave()
     {
-        countDown[0].gameObject.SetActive(true);
-        yield return new WaitForSeconds(1);
-
-        countDown[0].gameObject.SetActive(false);
-        countDown[1].gameObject.SetActive(true);
-        yield return new WaitForSeconds(1);
-
-        countDown[1].gameObject.SetActive(false);
-        countDown[2].gameObject.SetActive(true);
-        yield return new WaitForSeconds(1);
-
-        countDown[2].gameObject.SetActive(false);
-        countDown[3].gameObject.SetActive(true);
-        yield return new WaitForSeconds(1);
-
-        countDown[3].gameObject.SetActive(false);
         countDown[4].gameObject.SetActive(true);
         yield return new WaitForSeconds(1);
 
         countDown[4].gameObject.SetActive(false);
+        countDown[3].gameObject.SetActive(true);
+        yield return new WaitForSeconds(1);
+
+        countDown[3].gameObject.SetActive(false);
+        countDown[2].gameObject.SetActive(true);
+        yield return new WaitForSeconds(1);
+
+        countDown[2].gameObject.SetActive(false);
+        countDown[1].gameObject.SetActive(true);
+        yield return new WaitForSeconds(1);
+
+        countDown[1].gameObject.SetActive(false);
+        countDown[0].gameObject.SetActive(true);
+        yield return new WaitForSeconds(1);
+
+        countDown[0].gameObject.SetActive(false);
 
         Spawner();
     }

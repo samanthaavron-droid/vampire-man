@@ -14,12 +14,15 @@ public class PlayerBase : MonoBehaviour
     public GameObject weaponChoiceUI;
     public GameObject firstButtonWeapon;
 
+    private PlayerInput playerInput;
+
     public static bool dead;
     public bool chooseWeapon;
     private void Start()
     {
         _movementController = GetComponent<MovementController>(); 
         _body = GetComponent<UniversalBody>();
+        playerInput = GetComponent<PlayerInput>();
 
         dead = false;
 
@@ -46,7 +49,7 @@ public class PlayerBase : MonoBehaviour
         Time.timeScale = 0f;
 
         weaponChoiceUI.SetActive(true);
-        GetComponent<PlayerInput>().SwitchCurrentActionMap("UI"); //switching input
+        playerInput.SwitchCurrentActionMap("UI"); //switching input
 
         EventSystem.current.SetSelectedGameObject(firstButtonWeapon);
     }
@@ -54,7 +57,7 @@ public class PlayerBase : MonoBehaviour
     {
         Time.timeScale = 1f;
         weaponChoiceUI.SetActive(false);
-        GetComponent<PlayerInput>().SwitchCurrentActionMap("playerController"); //switching input
+        playerInput.SwitchCurrentActionMap("playerController"); //switching input
     }
     public void SwordChoice()
     {

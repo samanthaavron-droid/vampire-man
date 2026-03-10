@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 using System.Linq;
 using UnityEngine.InputSystem;
 using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
+using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -18,13 +19,18 @@ public class ScoreManager : MonoBehaviour
     public GameObject firstButtonWeapon;
     public GameObject player;
 
+    public Button[] buttons;
+
     public PlayerInput playerInput;
 
     public bool resetScore;
-    public bool testUpgrade;
 
     private string[] upgrades = {"MainDamageUpgrade", "MainSpeedUpgrade", "MainSizeUpgrade", "MainRechargeUpgrade",
-                                "SecondaryDamageUpgrade", "SecondarySpeedUpgrade", "SecondarySizeUpgrade", "SecondaryRechargeUpgrade", "HealthUpgrade", "SpeedUpgrade"};
+                                "SecondaryDamageUpgrade", "SecondarySpeedUpgrade", "SecondarySizeUpgrade", "SecondaryRechargeUpgrade",
+                                "HealthUpgrade", "SpeedUpgrade"};
+    private string[] upgradeNames = {"Damage Upgrade", "Attack Speed Upgrade", "Size Upgrade", "Cooldown Upgrade",
+                                    "Damage Upgrade", "Attack Speed Upgrade", "Size Upgrade", "Cooldown Upgrade",
+                                    "Health Upgrade", "Speed Upgrade"};
     private int[] chosenUpgrades;
     private void Awake()
     {
@@ -35,10 +41,6 @@ public class ScoreManager : MonoBehaviour
         chosenUpgrades = new int[3];
 
         weaponChoiceUI.SetActive(false);
-        firstButtonWeapon.SetActive(false);
-        
-        if (testUpgrade)
-            Upgrade(); //to see upgrade menu from the start
 
         if (resetScore)
             AnnulateHighScore(); //to set high score to 0
@@ -88,11 +90,33 @@ public class ScoreManager : MonoBehaviour
     private void GetRandomUpgrades()
     {
         chosenUpgrades = GenerateUniqueRandoms(3, 0, upgrades.Length);
-        
-        if (chosenUpgrades.Contains(4) || chosenUpgrades.Contains(5) || chosenUpgrades.Contains(6) || chosenUpgrades.Contains(7))
+
+        if (player.GetComponent<Weapons>().sWeapon == WeaponChoice.None)
         {
-            GetRandomUpgrades();
-            return;
+            if (chosenUpgrades.Contains(4) || chosenUpgrades.Contains(5) || chosenUpgrades.Contains(6) || chosenUpgrades.Contains(7))
+            {
+                GetRandomUpgrades();
+                return;
+            }
+        }
+        SetButtonNames();
+    }
+    private void SetButtonNames()
+    {
+        for (int i = 0; i < buttons.Length; i++)
+        {
+            if (chosenUpgrades[i] == 0 || chosenUpgrades[i] == 1 || chosenUpgrades[i] == 2 || chosenUpgrades[i] == 3)
+            {
+                buttons[i].GetComponentInChildren<TextMeshProUGUI>().text = player.GetComponent<Weapons>().mWeapon.ToString()
+                                                                            + "\n" + upgradeNames[chosenUpgrades[i]].ToString();
+            } else if (chosenUpgrades[i] == 4 || chosenUpgrades[i] == 5 || chosenUpgrades[i] == 6 || chosenUpgrades[i] == 7)
+            {
+                buttons[i].GetComponentInChildren<TextMeshProUGUI>().text = player.GetComponent<Weapons>().sWeapon.ToString()
+                                                                            + "\n" + upgradeNames[chosenUpgrades[i]].ToString();
+            } else if (chosenUpgrades[i] == 8 || chosenUpgrades[i] == 9)
+            {
+                buttons[i].GetComponentInChildren<TextMeshProUGUI>().text = upgradeNames[chosenUpgrades[i]].ToString();
+            }
         }
     }
     public void FirstUpgradeButton()
