@@ -651,7 +651,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Menu
   menu: {fileID: 407654591}
-  highScore: {fileID: 980617971}
+  highScore: {fileID: 980617973}
   firstChoice: {fileID: 1268933763}
 --- !u!114 &732964453
 MonoBehaviour:

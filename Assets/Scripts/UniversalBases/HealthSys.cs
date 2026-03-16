@@ -2,11 +2,13 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Cinemachine;
 
 public class HealthSys : MonoBehaviour
 {
     private UniversalBody _body;
     private ScoreManager _scoreManager;
+    private CinemachineImpulseSource _impulseSource;
 
     private float startHealth;
     [SerializeField] private float regenTime;
@@ -18,6 +20,7 @@ public class HealthSys : MonoBehaviour
         _body = GetComponent<UniversalBody>();
         startHealth = _body.stats.health;
         _scoreManager = GameObject.FindGameObjectWithTag("scoreManager").GetComponent<ScoreManager>();
+        _impulseSource = GetComponent<CinemachineImpulseSource>();
     }
     private void Update()
     {
@@ -36,6 +39,7 @@ public class HealthSys : MonoBehaviour
         {
             _body.stats.health -= damage;
             coolDown = regenTime;
+            Immunity(0.1f);
         }
 
         if(_body.stats.health <= 0)
@@ -49,18 +53,17 @@ public class HealthSys : MonoBehaviour
                 gameObject.GetComponent<EnemyAI>().Die(); //animations of dying and everything else
             }
         }
-        //stolen screenshake
         if (_body.gameObject.tag == "Player")
         {
-            if (damage >= startHealth / 5)
+            if (damage >= _body.stats.health / 2)
             {
-                CameraShake.instance.Shake(CameraShake.Strength.strongShake);
-            } else if (damage >= startHealth / 10)
+                _impulseSource.GenerateImpulse(1f);
+            } else if (damage >= _body.stats.health / 5)
             {
-                CameraShake.instance.Shake(CameraShake.Strength.mediumShake);
+                _impulseSource.GenerateImpulse(0.5f);
             } else
             {
-                CameraShake.instance.Shake(CameraShake.Strength.weakShake);
+                _impulseSource.GenerateImpulse(0.2f);
             }
         }
     }

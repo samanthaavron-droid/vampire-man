@@ -11,56 +11,26 @@ public class SwordBody : MonoBehaviour
         this.stats = stats;
         this.weapons = weapons;
     }
+    void Start()
+    {
+        StartCoroutine(RemoveAfterPlayerHit());
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag(stats.tag))
         {
             collision.gameObject.GetComponent<HealthSys>().TakeDamage(stats.damage);
-            StartCoroutine(Stun(collision.gameObject.GetComponent<UniversalBody>()));
-        } else
-        {
-            StartCoroutine(FallBack());
+            if (collision.gameObject.CompareTag("Enemy"))
+            {
+                EnemyAI ai = collision.gameObject.GetComponent<EnemyAI>();
+                ai.StartStun(stats);
+            }
         }
     }
-    private IEnumerator Stun(UniversalBody target)
-    {
-        if (target.stats.movementSpeed != 0 && target.gameObject.CompareTag("Enemy"))
-        {
-            targets.Add(target);
-
-            float tempSpeed = target.stats.movementSpeed; //recording
-            target.stats.movementSpeed = 0; //stunning
-            //do something like stun VFX
-
-            yield return new WaitForSeconds(stats.speed);
-
-            target.stats.movementSpeed = tempSpeed;
-            targets.Remove(target);
-
-            Deleter();
-        } else if (target.gameObject.CompareTag("Player"))
-        {
+    private IEnumerator RemoveAfterPlayerHit()
+    { 
             yield return new WaitForSeconds(stats.speed);
             Destroy(gameObject);
-        }
-    }
-    private void Deleter()
-    {
-        if (targets.Count > 0)
-        {
-            return; 
-        } else if (targets.Count == 0)
-        {
-            Destroy(gameObject);
-        }
-    }
-    private IEnumerator FallBack()
-    {
-        yield return new WaitForSeconds(stats.speed);
-        Destroy(gameObject);
-    }
-    private void Update()
-    {
-        transform.position = weapons.transform.position;
+        
     }
 }

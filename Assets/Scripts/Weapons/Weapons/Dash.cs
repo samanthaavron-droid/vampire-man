@@ -32,15 +32,18 @@ public class Dash : Weapon
     public IEnumerator DashTimer(Stats userStats, Weapons user)
     {
         userStats.movementSpeed = userStats.movementSpeed * stats.speed * 10;
-        user.gameObject.GetComponent<HealthSys>().Immunity(0.1f);
+        user.gameObject.GetComponent<HealthSys>().Immunity(0.2f);
         user.gameObject.GetComponent<UniversalBody>().spedUp = true;
         //Play animation
 
         yield return new WaitForSeconds(0.05f);
 
         userStats.movementSpeed = userStats.movementSpeed / stats.speed / 10;
-        user.gameObject.GetComponent<UniversalBody>().spedUp = false;
+
         //exit animation
+
+        yield return new WaitForSeconds(0.5f);
+        user.gameObject.GetComponent<UniversalBody>().spedUp = false;
     }
     public override void SpeedUpgrade()
     {

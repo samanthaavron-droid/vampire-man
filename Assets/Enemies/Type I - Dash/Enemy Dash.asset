@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Stats
   damage: 3
   speed: 2
-  reChargeTime: 2
+  reChargeTime: 3
   size: 0.5
   health: 0
   tag: Player

@@ -42,7 +42,11 @@ public class Whip : Weapon
         foreach (var hit in whip)
         {
             hit.collider.gameObject.GetComponent<HealthSys>().TakeDamage(stats.damage);
-            user.StartCoroutine(Stun(hit.collider.gameObject.GetComponent<UniversalBody>()));
+
+            if (hit.collider.gameObject.GetComponent<UniversalBody>().spedUp == false)
+            {
+                user.StartCoroutine(Stun(hit.collider.gameObject.GetComponent<UniversalBody>()));
+            } 
         }
     }
     public IEnumerator Stun(UniversalBody target)

@@ -79,7 +79,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
   m_Color: {r: 1, g: 0.7049093, b: 0, a: 1}
@@ -190,6 +190,7 @@ MonoBehaviour:
   target: []
   ignorePoints: 0
   randomWeapons: 0
+  followPlayer: 0
 --- !u!114 &2630468459202550795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,7 +216,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6215ac671d618a948b6395de9025a7c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UniversalBody
-  StatsTemplate: {fileID: 11400000, guid: ca6abb537ffcb754e896067168acc7db, type: 2}
+  weapons: {fileID: 0}
+  StatsTemplate: {fileID: 11400000, guid: d5161043054c9064f9487950c26c0e7e, type: 2}
+  spedUp: 0
 --- !u!114 &5606610780052172858
 MonoBehaviour:
   m_ObjectHideFlags: 0

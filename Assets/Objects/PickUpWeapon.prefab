@@ -92,10 +92,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9667f7fad37dab64ab352479548b34e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponPikcup
-  weaponChoiceUI: {fileID: 4646767774430228946, guid: 897519fa21fbb864a9d0f91f146dd9ca, type: 3}
-  emptyButton: {fileID: 0}
-  choice1: {fileID: 0}
-  choice2: {fileID: 0}
+  playerChoice: {fileID: 0}
 --- !u!1 &6433295149443519114
 GameObject:
   m_ObjectHideFlags: 0
@@ -175,7 +172,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_MaskInteraction: 0
   m_Sprite: {fileID: -712631045867808456, guid: b670ab75dde984907b8570040daa08c5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.34509805}

@@ -8,7 +8,7 @@ public class Seeker : MonoBehaviour
     internal List<Node> path;
     internal int targetIndex;
 
-    public bool ignorePoints;
+    [HideInInspector]public bool ignorePoints;
     private void Awake()
     {
         GameObject[] points = GameObject.FindGameObjectsWithTag("PathDot");
@@ -28,6 +28,7 @@ public class Seeker : MonoBehaviour
     {
         if (target != null && Pathfinding.instance != null)
         {
+           // Debug.Log("RequestPath " );
             path = Pathfinding.instance.FindPath(transform.position, target[0].position);
 
             if (path != null && path.Count > 0 && ignorePoints == false)

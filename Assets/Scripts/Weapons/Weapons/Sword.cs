@@ -15,7 +15,7 @@ public class Sword : Weapon
     {
         if (Time.time < stats.coolDown)
         {
-            Debug.Log("Sword on cooldown by " + user.gameObject.name);
+            //Debug.Log("Sword on cooldown by " + user.gameObject.name);
             return;
         }
 
@@ -23,6 +23,7 @@ public class Sword : Weapon
 
         deathZone = GameObject.Instantiate(user.sword, user.transform.position, Quaternion.identity);
         deathZone.transform.localScale = new Vector3(stats.size, stats.size, 1f);
+        deathZone.transform.SetParent(user.gameObject.transform);
 
         deathZone.GetComponent<SwordBody>().SetStats(stats, user);
     }

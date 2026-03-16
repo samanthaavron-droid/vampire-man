@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,12 +13,14 @@ public class TutorialWaves : MonoBehaviour
     public GameObject[] spawnPos;
     public GameObject[] countDown;
 
-    private List<EnemyAI> activeEnemies = new List<EnemyAI>();
+    public List<EnemyAI> activeEnemies = new List<EnemyAI>();
     private int waveN;
 
     public GameObject finishUI;
     public GameObject emptyButton;
     public PlayerInput playerInp;
+
+    public event Action<TutorialWaves> onSpawn;
     void Start()
     {
         finishUI.SetActive(false);
@@ -40,7 +43,7 @@ public class TutorialWaves : MonoBehaviour
             for (int i = 0; i < waves[waveN].wave.Length; i++)
             {
                 Vector3 spawnPosition = spawnPos[GenerateUniqueRandoms(1, 0, spawnPos.Length)[0]].transform.position;
-                GameObject newEnemy = Instantiate(waves[waveN].wave[Random.Range(0, waves[waveN].wave.Length)], spawnPosition, Quaternion.identity);
+                GameObject newEnemy = Instantiate(waves[waveN].wave[UnityEngine.Random.Range(0, waves[waveN].wave.Length)], spawnPosition, Quaternion.identity);
 
                 activeEnemies.Add(newEnemy.GetComponent<EnemyAI>());
                 newEnemy.GetComponent<EnemyAI>().OnDeath += HandleDeath;
@@ -49,11 +52,13 @@ public class TutorialWaves : MonoBehaviour
         {
             NoWaves();
         }
+        onSpawn?.Invoke(this);
     }
     private void HandleDeath(EnemyAI dead)
     {
         dead.OnDeath -= HandleDeath;
         activeEnemies.Remove(dead);
+        //onSpawn?.Invoke(this);
 
         if (activeEnemies.Count == 0)
         {
@@ -103,7 +108,7 @@ public class TutorialWaves : MonoBehaviour
 
         while (uniqueNumbers.Count < amount)
         {
-            int randomVal = Random.Range(min, max);
+            int randomVal = UnityEngine.Random.Range(min, max);
             if (!uniqueNumbers.Contains(randomVal))
             {
                 uniqueNumbers.Add(randomVal);
@@ -112,6 +117,7 @@ public class TutorialWaves : MonoBehaviour
         return uniqueNumbers.ToArray();
     }
 }
+
 [System.Serializable]
 public struct waves
 {

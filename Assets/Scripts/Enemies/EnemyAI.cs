@@ -1,6 +1,9 @@
 ﻿using NUnit.Framework;
 using System;
+using System.Collections;
 using System.IO;
+using Unity.VisualScripting;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
 public class EnemyAI : Seeker
@@ -8,6 +11,7 @@ public class EnemyAI : Seeker
     private UniversalBody _body;
     private ScoreManager _scoreManager;
     public bool randomWeapons;
+    public bool followPlayer;
 
     public event Action<EnemyAI> OnDeath;
 
@@ -24,6 +28,26 @@ public class EnemyAI : Seeker
 
         AttackCheck();
     }
+
+    public void StartStun(Stats stat)
+    {
+        StartCoroutine(Stun(stat));
+    }
+
+    private IEnumerator Stun(Stats stat)
+    {
+        if (_body.stats.movementSpeed != 0 )
+        {
+            float tempSpeed = _body.stats.movementSpeed; //recording
+            _body.stats.movementSpeed = 0; //stunning
+
+            yield return new WaitForSeconds(stat.speed);
+
+            _body.stats.movementSpeed = tempSpeed;
+           
+        }
+    }
+
     private void Update()
     {
         if (path == null || path.Count == 0 || target == null)
@@ -46,13 +70,19 @@ public class EnemyAI : Seeker
         }
 
         //code that stops enemies from stopping 2 feet from the player
-        if (Vector2.Distance(transform.position, player.transform.position) < 3f)
+        if (followPlayer == false)
+        {
+            if (Vector2.Distance(transform.position, player.transform.position) < 3f)
+            {
+                ignorePoints = true;
+            }
+            else
+            {
+                ignorePoints = false;
+            }
+        } else
         {
             ignorePoints = true;
-        }
-        else
-        {
-            ignorePoints = false;
         }
     }
     private void AttackCheck()
@@ -66,11 +96,6 @@ public class EnemyAI : Seeker
             case WeaponChoice.None:
                 break;
             case WeaponChoice.Dash:
-                RaycastHit2D hitDash = Physics2D.Raycast(transform.position,
-                                                        _body.stats.currentDirection,
-                                                        _body.stats.movementSpeed * _body.weapons.mainWeapon.stats.speed * 0.5f + 1f,
-                                                        LayerMask.GetMask("Player"));
-                if (hitDash)
                     _body.MainAttack();
                 break;
             case WeaponChoice.Sword:

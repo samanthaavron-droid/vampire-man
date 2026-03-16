@@ -5,8 +5,6 @@ public class TrapBody : MonoBehaviour
 {
     Stats stats;
     Weapons weapons;
-
-    private bool trapped = false;
     public void SetStats(Stats stats, Weapons weapons)
     {
         this.stats = stats;
@@ -14,12 +12,10 @@ public class TrapBody : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag(stats.tag) && trapped == false)
+        if (collision.gameObject.CompareTag(stats.tag))
         {
             if (collision.gameObject.GetComponent<UniversalBody>().spedUp == false)
             {
-                trapped = true;
-
                 StartCoroutine(TrapAttack(collision.gameObject));
             } else
             {
@@ -31,15 +27,26 @@ public class TrapBody : MonoBehaviour
     {
         target.GetComponent<HealthSys>().TakeDamage(stats.damage);
 
+        if (target.gameObject == null)
+        {
+            Destroy(gameObject);
+        }
+
         float tempSpeed = target.GetComponent<UniversalBody>().stats.movementSpeed;
-        target.GetComponent<UniversalBody>().stats.movementSpeed = 0f;
 
-        target.transform.position = gameObject.transform.localPosition;
+        if (tempSpeed != 0)
+        {
+            target.GetComponent<UniversalBody>().stats.movementSpeed = 0f;
 
-        yield return new WaitForSeconds(stats.speed);
+            target.transform.position = gameObject.transform.localPosition;
 
-        target.GetComponent<UniversalBody>().stats.movementSpeed = tempSpeed;
+            yield return new WaitForSeconds(stats.speed);
 
+            if (target != null)
+            {
+                target.GetComponent<UniversalBody>().stats.movementSpeed = tempSpeed;
+            }
+        }
         Destroy(gameObject);
     }
 }

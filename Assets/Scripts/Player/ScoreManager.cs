@@ -35,6 +35,7 @@ public class ScoreManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        levelXP = 0;
     }
     private void Start()
     {
@@ -54,7 +55,7 @@ public class ScoreManager : MonoBehaviour
     }
     public void AddXP(int xp) //public Method that is called when entity dies
     {
-        if (PlayerPrefs.GetInt("highScore", 0) > levelXP)
+        if (PlayerPrefs.GetInt("highScore") > levelXP)
         {
             PlayerPrefs.SetInt("highScore", levelXP);
             PlayerPrefs.Save();

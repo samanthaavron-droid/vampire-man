@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 using Unity.VisualScripting;
+using System;
 
 public class WaveManager : MonoBehaviour
 {
@@ -13,7 +14,9 @@ public class WaveManager : MonoBehaviour
 
     public int waveCount;
 
-    private List<EnemyAI> activeEnemies = new List<EnemyAI>();
+    public event Action<WaveManager> onSpawn;
+
+    [HideInInspector]public List<EnemyAI> activeEnemies = new List<EnemyAI>();
     void Start()
     {
         if (spawnPos == null)
@@ -27,22 +30,24 @@ public class WaveManager : MonoBehaviour
         }
         StartCoroutine(NewWave());
     }
-    private void Spawner()
+    public void Spawner()
     {
         for (int i = 0; i < waveCount; i++)
         {
             Vector3 spawnPosition = spawnPos[GenerateUniqueRandoms(1, 0, spawnPos.Length)[0]].transform.position;
 
-            GameObject newEnemy = Instantiate(prefab[Random.Range(0, prefab.Length)], spawnPosition, Quaternion.identity);
+            GameObject newEnemy = Instantiate(prefab[UnityEngine.Random.Range(0, prefab.Length)], spawnPosition, Quaternion.identity);
 
             activeEnemies.Add(newEnemy.GetComponent<EnemyAI>());
             newEnemy.GetComponent<EnemyAI>().OnDeath += HandleDeath;
         }
+        onSpawn?.Invoke(this);
     }
     private void HandleDeath(EnemyAI dead)
     {
         dead.OnDeath -= HandleDeath;
         activeEnemies.Remove(dead);
+        onSpawn?.Invoke(this);
 
         if (activeEnemies.Count == 0)
         {
@@ -55,7 +60,7 @@ public class WaveManager : MonoBehaviour
 
         while (uniqueNumbers.Count < amount)
         {
-            int randomVal = Random.Range(min, max);
+            int randomVal = UnityEngine.Random.Range(min, max);
             if (!uniqueNumbers.Contains(randomVal))
             {
                 uniqueNumbers.Add(randomVal);
