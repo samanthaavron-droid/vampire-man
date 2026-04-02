@@ -13,23 +13,25 @@ public class Sword : Weapon
 
     public override void Use(Weapons user, Stats userStats)
     {
-        if (Time.time < stats.coolDown)
-        {
-            //Debug.Log("Sword on cooldown by " + user.gameObject.name);
-            return;
-        }
+        if (stats.coolDown > 0) return;
 
-        stats.coolDown = Time.time + stats.reChargeTime;
+        if (user == null || userStats == null) return;
+
+        user.weaponAnim.gameObject.transform.localScale = new Vector2(0.24f * stats.size, 0.24f * stats.size);
+        user.weaponAnim.SetFloat("animationSpeed", 0.27f / stats.speed);
+        user.weaponAnim.SetTrigger("sword");
 
         deathZone = GameObject.Instantiate(user.sword, user.transform.position, Quaternion.identity);
         deathZone.transform.localScale = new Vector3(stats.size, stats.size, 1f);
         deathZone.transform.SetParent(user.gameObject.transform);
 
         deathZone.GetComponent<SwordBody>().SetStats(stats, user);
+
+        stats.coolDown = stats.reChargeTime;
     }
     public override void SpeedUpgrade()
     {
-        stats.speed += 0.5f;
+        stats.speed += 0.3f;
     }
     public override void DamageUpgrade()
     {
@@ -37,7 +39,7 @@ public class Sword : Weapon
     }
     public override void RechargeUpgrade()
     {
-        stats.reChargeTime += -stats.reChargeTime / 10f;
+        stats.reChargeTime -= stats.reChargeTime / 10f;
     }
     public override void SizeUpgrade()
     {

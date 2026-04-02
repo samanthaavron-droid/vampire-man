@@ -7,30 +7,33 @@ using Cinemachine;
 public class HealthSys : MonoBehaviour
 {
     private UniversalBody _body;
-    private ScoreManager _scoreManager;
-    private CinemachineImpulseSource _impulseSource;
+    private Animator animator;
+    public CinemachineImpulseSource _impulseSource;
 
-    private float startHealth;
+    [HideInInspector]public float startHealth;
     [SerializeField] private float regenTime;
     private bool immune = false;
     private float coolDown;
+    private bool regeneration = false;
 
+    public ParticleSystem damageEffect;
     private void Start()
     {
         _body = GetComponent<UniversalBody>();
         startHealth = _body.stats.health;
-        _scoreManager = GameObject.FindGameObjectWithTag("scoreManager").GetComponent<ScoreManager>();
         _impulseSource = GetComponent<CinemachineImpulseSource>();
+        animator = GetComponentInChildren<Animator>();
     }
     private void Update()
     {
-        if (coolDown <= 0) //Regeneration timer
-        {
-            RegenerationStart();
-        } 
-        else
+        if (coolDown > 0)
         {
             coolDown -= Time.deltaTime;
+            return;
+        }
+        else if (coolDown < 0 && _body.stats.health < startHealth)
+        {
+            StartCoroutine(RegenerationStart());
         }
     }  
     public void TakeDamage(float damage) //Damage taking from outside
@@ -38,6 +41,8 @@ public class HealthSys : MonoBehaviour
         if (!immune)
         {
             _body.stats.health -= damage;
+            damageEffect.Play();
+            //Debug.Log("Health left: " + _body.stats.health);
             coolDown = regenTime;
             Immunity(0.1f);
         }
@@ -46,15 +51,25 @@ public class HealthSys : MonoBehaviour
         {
             if (_body.gameObject.tag == "Player")
             {
-                Time.timeScale = 0;
                 PlayerBase.dead = true;
             } else
             {
-                gameObject.GetComponent<EnemyAI>().Die(); //animations of dying and everything else
+                gameObject.GetComponent<EnemyAI>().DeathAnimationHealth(); //animations of dying and everything else
+                gameObject.GetComponent<EnemyAI>().StopPreDie();
+                StartCoroutine(DeathController(gameObject.GetComponent<EnemyAI>()));
             }
         }
         if (_body.gameObject.tag == "Player")
         {
+            if (_body.stats.currentDirection.x > 0 && _body.stats.currentDirection.y == 0)
+                animator.SetTrigger("rightdamage");
+            else if (_body.stats.currentDirection.x < 0 && _body.stats.currentDirection.y == 0)
+                animator.SetTrigger("leftdamage");
+            else if (_body.stats.currentDirection.x == 0 && _body.stats.currentDirection.y > 0)
+                animator.SetTrigger("updamage");
+            else if (_body.stats.currentDirection.x == 0 && _body.stats.currentDirection.y < 0)
+                animator.SetTrigger("downdamage");
+
             if (damage >= _body.stats.health / 2)
             {
                 _impulseSource.GenerateImpulse(1f);
@@ -67,16 +82,43 @@ public class HealthSys : MonoBehaviour
             }
         }
     }
-    public void RegenerationStart() //regeneration called
+    private IEnumerator DeathController(EnemyAI ai)
     {
-        if (_body.stats.health < startHealth)
+        yield return new WaitForSeconds(0.5f);
+        ai.Die();
+    }
+    public IEnumerator RegenerationStart() //regeneration called
+    {
+        Regeneration();
+
+        if (regeneration == true)
         {
-            InvokeRepeating("Regeneration", 1f, 1f);
+            yield return new WaitForSecondsRealtime(1f);
+            regeneration = true;
+            StartCoroutine(RegenerationStart());
+        } else
+        {
+            yield return null;
         }
     }
     private void Regeneration() //regeneration
     {
         _body.stats.health += (startHealth / 10);
+
+        if (_body.gameObject.tag == "Player")
+        {
+            ScoreManager.levelXP -= Mathf.RoundToInt(startHealth / 10);
+        }
+
+        if (_body.stats.health > startHealth)
+        {
+            _body.stats.health = startHealth;
+        }
+
+        if (_body.stats.health == startHealth)
+        {
+            regeneration = false;
+        }        
     }
     public void Immunity(float time) //Immunity system and it's timer
     {

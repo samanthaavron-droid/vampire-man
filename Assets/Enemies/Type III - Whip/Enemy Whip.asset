@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f02c0f7b3265204f8585167120ad81d, type: 3}
   m_Name: Enemy Whip
   m_EditorClassIdentifier: Assembly-CSharp::Stats
-  damage: 4
+  damage: 3
   speed: 0.1
   reChargeTime: 2
-  size: 3
+  size: 2
   health: 0
   tag: Player
   movementSpeed: 0

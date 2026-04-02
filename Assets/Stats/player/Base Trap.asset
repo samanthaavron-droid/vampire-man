@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f02c0f7b3265204f8585167120ad81d, type: 3}
   m_Name: Base Trap
   m_EditorClassIdentifier: Assembly-CSharp::Stats
-  damage: 10
+  damage: 5
   speed: 2
   reChargeTime: 10
   size: 0

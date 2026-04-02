@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class UniversalBody : MonoBehaviour
@@ -7,10 +8,29 @@ public class UniversalBody : MonoBehaviour
     public StatsTemplate StatsTemplate;
     public Stats stats;
     public bool spedUp;
+    private HealthSys healthSys;
     void Awake()
     {
-        weapons = GetComponent<Weapons>(); 
+        weapons = GetComponent<Weapons>();
+        healthSys = GetComponent<HealthSys>();
         stats = new Stats(StatsTemplate);
+    }
+    void Update()
+    {
+        if (weapons.mWeapon != WeaponChoice.None)
+        {
+            if (weapons.mainWeapon.stats.coolDown > 0)
+            {
+                weapons.mainWeapon.stats.coolDown -= Time.deltaTime;
+            }
+        }
+        if (weapons.sWeapon != WeaponChoice.None)
+        {
+            if (weapons.secondaryWeapon.stats.coolDown > 0)
+            {
+                weapons.secondaryWeapon.stats.coolDown -= Time.deltaTime;
+            }
+        }
     }
     public void MainAttack()
     {
@@ -26,64 +46,63 @@ public class UniversalBody : MonoBehaviour
             weapons.secondaryWeapon.Use(weapons, stats);
         }
     }
+    public IEnumerator Stun(float power, float duration)
+    {
+        stats.movementSpeed = stats.movementSpeed / power;
+
+        yield return new WaitForSeconds(duration);
+
+        stats.movementSpeed = stats.movementSpeed * power;
+    }
     public void MainDamageUpgrade()
     {
         weapons.mainWeapon.DamageUpgrade();
         ScoreManager.CloseMenu();
-        Debug.Log("m");
     }
     public void MainSpeedUpgrade()
     {
         weapons.mainWeapon.SpeedUpgrade();
         ScoreManager.CloseMenu();
-        Debug.Log("m");
     }
     public void MainSizeUpgrade()
     {
         weapons.mainWeapon.SizeUpgrade();
         ScoreManager.CloseMenu();
-        Debug.Log("m");
     }
     public void MainRechargeUpgrade()
     {
         weapons.mainWeapon.RechargeUpgrade();
         ScoreManager.CloseMenu();
-        Debug.Log("m");
     }
     public void SecondaryDamageUpgrade()
     {           
         weapons.secondaryWeapon.DamageUpgrade();
         ScoreManager.CloseMenu();
-        Debug.Log("s");
     }           
     public void SecondarySpeedUpgrade()
     {           
         weapons.secondaryWeapon.SpeedUpgrade();
         ScoreManager.CloseMenu();
-        Debug.Log("s");
     }           
     public void SecondarySizeUpgrade()
     {           
         weapons.secondaryWeapon.SizeUpgrade();
         ScoreManager.CloseMenu();
-        Debug.Log("s");
     }           
     public void SecondaryRechargeUpgrade()
     {           
         weapons.secondaryWeapon.RechargeUpgrade();
         ScoreManager.CloseMenu();
-        Debug.Log("s");
     }
     public void HealthUpgrade()
     {
         stats.health += stats.health / 10;
+        healthSys.startHealth += healthSys.startHealth / 10;
         ScoreManager.CloseMenu();
-        Debug.Log("h");
     }
     public void SpeedUpgrade()
     {
         stats.speed += stats.speed / 5;
         ScoreManager.CloseMenu();
-        Debug.Log("h");
     }
 }

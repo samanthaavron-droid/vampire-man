@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Base Cross
   m_EditorClassIdentifier: Assembly-CSharp::Stats
   damage: 5
-  speed: 5
-  reChargeTime: 20
-  size: 20
+  speed: 2
+  reChargeTime: 10
+  size: 5
   health: 0
   tag: Enemy
   movementSpeed: 0
   currentDirection: {x: 0, y: 0}
+  xp: 0

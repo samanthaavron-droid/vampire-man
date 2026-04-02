@@ -18,6 +18,7 @@ public class ChestSpawner : MonoBehaviour
     {
         if (spawnPos == null)
         {
+            spawnPos = new GameObject[24];
             spawnPos = GameObject.FindGameObjectsWithTag("chestSpawn");
         }
 
@@ -64,6 +65,7 @@ public class ChestSpawner : MonoBehaviour
         chest.playerChoice.sWeapon = weaponChoices[i];
         chest.playerChoice.SetWeapon();
         weaponChoiceUI.SetActive(false);
+        chest.playerChoice.gameObject.GetComponent<PlayerBase>().SetWeaponRechargeUI();
         chest.playerChoice.gameObject.GetComponent<PlayerInput>().SwitchCurrentActionMap("playerController");
         Time.timeScale = 1f;
         Destroy(chest.gameObject);

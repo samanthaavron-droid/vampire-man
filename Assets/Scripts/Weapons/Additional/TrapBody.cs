@@ -16,37 +16,36 @@ public class TrapBody : MonoBehaviour
         {
             if (collision.gameObject.GetComponent<UniversalBody>().spedUp == false)
             {
-                StartCoroutine(TrapAttack(collision.gameObject));
+                 TrapAttack(collision.gameObject);
+
+                if (gameObject.GetComponent<SpriteRenderer>() != null)
+                    gameObject.GetComponent<SpriteRenderer>().enabled = false;
             } else
             {
                 return;
             }
         }
     }
-    private IEnumerator TrapAttack(GameObject target)
+    private void Start()
+    {
+        StartCoroutine(AutoDestroy());
+    }
+    private void TrapAttack(GameObject target)
     {
         target.GetComponent<HealthSys>().TakeDamage(stats.damage);
+
+        target.gameObject.GetComponent<UniversalBody>().StartCoroutine(target.GetComponent<UniversalBody>().Stun(1000, stats.speed));
 
         if (target.gameObject == null)
         {
             Destroy(gameObject);
         }
 
-        float tempSpeed = target.GetComponent<UniversalBody>().stats.movementSpeed;
-
-        if (tempSpeed != 0)
-        {
-            target.GetComponent<UniversalBody>().stats.movementSpeed = 0f;
-
-            target.transform.position = gameObject.transform.localPosition;
-
-            yield return new WaitForSeconds(stats.speed);
-
-            if (target != null)
-            {
-                target.GetComponent<UniversalBody>().stats.movementSpeed = tempSpeed;
-            }
-        }
+        Destroy(gameObject);
+    }
+    private IEnumerator AutoDestroy()
+    {
+        yield return new WaitForSeconds(10f);
         Destroy(gameObject);
     }
 }

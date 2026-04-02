@@ -9,32 +9,25 @@ public class Cross : Weapon
     }
     public override void Use(Weapons user, Stats userStats)
     {
-        if (Time.time < stats.coolDown)
-        {
-            Debug.Log("Cross on cooldown by " + user.gameObject.name);
-            return;
-        }
+        if (stats.coolDown > 0) return;
 
-        stats.coolDown = Time.time + stats.reChargeTime;
+        if (user == null || userStats == null) return;
+
+        GameObject prefab = GameObject.Instantiate(user.crossAnim, user.transform.position, Quaternion.identity);
+        prefab.transform.transform.localScale = new Vector2(stats.size * 0.75f, stats.size * 0.75f);
 
         Collider2D[] crossHit = Physics2D.OverlapCircleAll(user.gameObject.transform.position, 
                                                             stats.size,
                                                             LayerMask.GetMask("Enemy"));
         foreach (var hit in crossHit)
         {
-            user.StartCoroutine(SuperStun(hit));
+            user.StartCoroutine(hit.gameObject.GetComponent<UniversalBody>().Stun(100, stats.speed));
+            hit.gameObject.GetComponent<HealthSys>().TakeDamage(stats.damage);
         }
-    }
-    public IEnumerator SuperStun(Collider2D target)
-    {
-        target.gameObject.GetComponent<HealthSys>().TakeDamage(stats.damage);
 
-        float tempSpeed = target.gameObject.GetComponent<UniversalBody>().stats.movementSpeed;
-        target.gameObject.GetComponent<UniversalBody>().stats.movementSpeed = 0.1f;
+        user.gameObject.GetComponent<HealthSys>()._impulseSource.GenerateImpulse(1f);
 
-        yield return new WaitForSeconds(stats.speed);
-
-        target.gameObject.GetComponent<UniversalBody>().stats.movementSpeed = tempSpeed;
+        stats.coolDown = stats.reChargeTime;
     }
     public override void SpeedUpgrade()
     {
@@ -46,7 +39,7 @@ public class Cross : Weapon
     }
     public override void RechargeUpgrade()
     {
-        stats.reChargeTime += -stats.reChargeTime / 10f;
+        stats.reChargeTime -= stats.reChargeTime / 10f;
     }
     public override void SizeUpgrade()
     {

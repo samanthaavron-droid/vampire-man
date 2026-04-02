@@ -5,25 +5,24 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using System.Linq;
 using UnityEngine.InputSystem;
-using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager Instance;
 
-    [SerializeField] private int levelXP;
+    [SerializeField] public static int levelXP;
     [SerializeField] private int xpToLevel;
 
     public GameObject weaponChoiceUI;
     public GameObject firstButtonWeapon;
     public GameObject player;
 
+    public TextMeshProUGUI scoreDisplay;
+
     public Button[] buttons;
 
     public PlayerInput playerInput;
-
-    public bool resetScore;
 
     private string[] upgrades = {"MainDamageUpgrade", "MainSpeedUpgrade", "MainSizeUpgrade", "MainRechargeUpgrade",
                                 "SecondaryDamageUpgrade", "SecondarySpeedUpgrade", "SecondarySizeUpgrade", "SecondaryRechargeUpgrade",
@@ -43,8 +42,8 @@ public class ScoreManager : MonoBehaviour
 
         weaponChoiceUI.SetActive(false);
 
-        if (resetScore)
-            AnnulateHighScore(); //to set high score to 0
+        PlayerPrefs.SetInt("currentScore", 0);
+        PlayerPrefs.Save();
     }
     private void Update()
     {
@@ -52,16 +51,14 @@ public class ScoreManager : MonoBehaviour
         {
             Upgrade();
         }
+        scoreDisplay.text = "Score: " + levelXP.ToString();
     }
     public void AddXP(int xp) //public Method that is called when entity dies
     {
-        if (PlayerPrefs.GetInt("highScore") > levelXP)
-        {
-            PlayerPrefs.SetInt("highScore", levelXP);
-            PlayerPrefs.Save();
-        } //high score save
-
         levelXP += xp;
+
+        PlayerPrefs.SetInt("currentScore", levelXP);
+        PlayerPrefs.Save();//high score save
 
         Debug.Log("Current XP: " + levelXP + ", XP needed: " + xpToLevel);
     }
@@ -82,11 +79,6 @@ public class ScoreManager : MonoBehaviour
         Instance.playerInput.SwitchCurrentActionMap("playerController");
         Instance.weaponChoiceUI.SetActive(false);
         Time.timeScale = 1;
-    }
-    private void AnnulateHighScore()
-    {
-        PlayerPrefs.SetInt("highScore", 0);
-        PlayerPrefs.Save();
     }
     private void GetRandomUpgrades()
     {

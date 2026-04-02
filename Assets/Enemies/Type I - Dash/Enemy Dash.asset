@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f02c0f7b3265204f8585167120ad81d, type: 3}
   m_Name: Enemy Dash
   m_EditorClassIdentifier: Assembly-CSharp::Stats
-  damage: 3
+  damage: 2
   speed: 2
-  reChargeTime: 3
+  reChargeTime: 2
   size: 0.5
   health: 0
   tag: Player

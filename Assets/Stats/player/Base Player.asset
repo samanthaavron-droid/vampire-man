@@ -16,7 +16,7 @@ MonoBehaviour:
   speed: 0
   reChargeTime: 0
   size: 0
-  health: 30
+  health: 24
   tag: Enemy
   movementSpeed: 5
   currentDirection: {x: 0, y: 0}

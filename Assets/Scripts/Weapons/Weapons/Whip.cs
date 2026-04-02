@@ -11,31 +11,26 @@ public class Whip : Weapon
     }
     public override void Use(Weapons user, Stats userStats)
     {
-        if (Time.time < stats.coolDown)
+        if (stats.coolDown > 0) return;
+
+        if (user == null || userStats == null) return;
+
+        if (user.weaponAnim != null)
         {
-            Debug.Log("Whip on cooldown by " + user.gameObject.name);
-            return;
+            user.weaponAnim.gameObject.transform.localScale = new Vector2(stats.size * 0.44f, 1f);
+            user.weaponAnim.transform.right = userStats.currentDirection;
+            user.weaponAnim.SetTrigger("whip");
         }
 
-        stats.coolDown = Time.time + stats.reChargeTime;
+        
 
         RaycastHit2D[] whip = null;
 
-        if (stats.tag == "Player")
-        {
-            whip = Physics2D.CircleCastAll(user.gameObject.transform.position,
-                                                                    0.5f,
-                                                                    userStats.currentDirection,
-                                                                    stats.size,
-                                                                    LayerMask.GetMask(stats.tag));
-        } else if (stats.tag == "Enemy")
-        {
-            whip = Physics2D.CircleCastAll(user.gameObject.transform.position,
-                                                                                0.5f,
-                                                                                -userStats.currentDirection,
-                                                                                stats.size,
-                                                                                LayerMask.GetMask(stats.tag));
-        }
+        whip = Physics2D.CircleCastAll(user.gameObject.transform.position,
+                                                                0.5f,
+                                                                userStats.currentDirection,
+                                                                stats.size,
+                                                                LayerMask.GetMask(stats.tag));
 
         if (whip == null) return;
 
@@ -45,18 +40,10 @@ public class Whip : Weapon
 
             if (hit.collider.gameObject.GetComponent<UniversalBody>().spedUp == false)
             {
-                user.StartCoroutine(Stun(hit.collider.gameObject.GetComponent<UniversalBody>()));
+                user.StartCoroutine(hit.collider.gameObject.GetComponent<UniversalBody>().Stun(10, stats.speed));
             } 
         }
-    }
-    public IEnumerator Stun(UniversalBody target)
-    {
-        target.stats.movementSpeed = target.stats.movementSpeed / 10;
-        //animation play
-
-        yield return new WaitForSeconds(stats.speed);
-
-        target.stats.movementSpeed = target.stats.movementSpeed * 10;
+        stats.coolDown = stats.reChargeTime;
     }
     public override void SpeedUpgrade()
     {
@@ -68,10 +55,10 @@ public class Whip : Weapon
     }
     public override void RechargeUpgrade()
     {
-        stats.reChargeTime += -stats.reChargeTime / 10f;
+        stats.reChargeTime -= stats.reChargeTime / 10f;
     }
     public override void SizeUpgrade()
     {
-        stats.size += 1f;
+        stats.size += 0.5f;
     }
 }

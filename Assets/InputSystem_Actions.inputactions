@@ -32,15 +32,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "UpgradeInterface",
-                    "type": "Button",
-                    "id": "e0bb23b1-c007-4850-a14d-6d8247d840b9",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -67,9 +58,31 @@
                     "isPartOfComposite": true
                 },
                 {
+                    "name": "up",
+                    "id": "dc940e63-efc9-48cc-9120-08d20c52d4aa",
+                    "path": "<Gamepad>/leftStick/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MoveDirection",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
                     "name": "down",
                     "id": "62a88d3f-832f-43d1-8b48-11fb246176d8",
                     "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MoveDirection",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "9812e4e1-4a92-41da-adba-e99ffcdab5d4",
+                    "path": "<Gamepad>/leftStick/down",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -89,9 +102,31 @@
                     "isPartOfComposite": true
                 },
                 {
+                    "name": "left",
+                    "id": "e5fd548b-3fc1-49c7-b0bc-b591abfb405d",
+                    "path": "<Gamepad>/leftStick/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MoveDirection",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
                     "name": "right",
                     "id": "eb47dcbc-6191-4764-8208-e43d4d6f8275",
                     "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MoveDirection",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "b2970e06-9a6c-4cec-97c8-8e5faadee9dc",
+                    "path": "<Gamepad>/leftStick/right",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -112,6 +147,17 @@
                 },
                 {
                     "name": "",
+                    "id": "653818a1-e1a7-4b55-92b5-83234b967d02",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MainAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "e3e9e380-415c-4ec3-9597-c0f45d01cd6e",
                     "path": "<Keyboard>/l",
                     "interactions": "",
@@ -123,12 +169,12 @@
                 },
                 {
                     "name": "",
-                    "id": "fb1eabc6-de30-4196-ab38-d50ed5c52723",
-                    "path": "",
+                    "id": "f3333cde-9b5f-4063-805d-52422ff53664",
+                    "path": "<Gamepad>/buttonNorth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "UpgradeInterface",
+                    "action": "SecondAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -151,7 +197,7 @@
                     "name": "Submit",
                     "type": "Button",
                     "id": "93b5014c-f76b-451f-9f87-3513dabac940",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -160,7 +206,7 @@
                     "name": "Cancel",
                     "type": "Button",
                     "id": "b33d8c93-38db-4616-bf3f-0a94c44ecbd1",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -497,7 +543,18 @@
                 {
                     "name": "",
                     "id": "137acdc4-e8ee-4c07-9be2-0fa99f3ab711",
-                    "path": "*/{Submit}",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse;Gamepad;Touch;Joystick;XR",
+                    "action": "Submit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "03fc96da-5bfc-4954-9eab-a6e0c3e76149",
+                    "path": "<Keyboard>/enter",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse;Gamepad;Touch;Joystick;XR",

@@ -9,41 +9,51 @@ public class Dash : Weapon
     }
     public override void Use(Weapons user, Stats userStats)
     {
-        if (Time.time < stats.coolDown)
-        {
-            Debug.Log("Dash on cooldown by " + user.gameObject.name);
-            return;
-        }
+        if (stats.coolDown > 0) return;
 
-        stats.coolDown = Time.time + stats.reChargeTime;
+        if (user == null || userStats == null) return;
 
         user.StartCoroutine(DashTimer(userStats, user)); //calling for speed increase 
 
-        RaycastHit2D[] dashHit = Physics2D.CircleCastAll(new Vector3(user.gameObject.transform.position.x, user.gameObject.transform.localPosition.y - 0.5f), 
+        user.dashParticle.Play();
+
+        RaycastHit2D[] dashHit = Physics2D.CircleCastAll(new Vector3(user.gameObject.transform.position.x, user.gameObject.transform.localPosition.y), 
                                                         stats.size,
                                                         userStats.currentDirection, 
-                                                        userStats.movementSpeed * 0.06f, 
+                                                        userStats.movementSpeed * 0.2f, 
                                                         LayerMask.GetMask(userStats.tag));
         foreach (var hit in dashHit)
         {
             hit.collider.gameObject.GetComponent<HealthSys>().TakeDamage(stats.damage); 
         }
+        stats.coolDown = stats.reChargeTime;
     }
     public IEnumerator DashTimer(Stats userStats, Weapons user)
     {
-        userStats.movementSpeed = userStats.movementSpeed * stats.speed * 10;
+        if (user.gameObject.tag == "Enemy")
+        {
+            user.gameObject.GetComponent<EnemyAI>().followPlayer = true;
+        }
+
+        userStats.movementSpeed = userStats.movementSpeed * stats.speed * 5;
         user.gameObject.GetComponent<HealthSys>().Immunity(0.2f);
         user.gameObject.GetComponent<UniversalBody>().spedUp = true;
         //Play animation
 
-        yield return new WaitForSeconds(0.05f);
+        yield return new WaitForSeconds(0.1f);
 
-        userStats.movementSpeed = userStats.movementSpeed / stats.speed / 10;
+        userStats.movementSpeed = userStats.movementSpeed / stats.speed / 5;
 
         //exit animation
 
         yield return new WaitForSeconds(0.5f);
         user.gameObject.GetComponent<UniversalBody>().spedUp = false;
+
+        if (user.gameObject.tag == "Enemy")
+        {
+            user.gameObject.GetComponent<EnemyAI>().followPlayer = false;
+        }
+
     }
     public override void SpeedUpgrade()
     {
@@ -55,7 +65,7 @@ public class Dash : Weapon
     }
     public override void RechargeUpgrade()
     {
-        stats.reChargeTime += -stats.reChargeTime / 10f;
+        stats.reChargeTime -= stats.reChargeTime / 10f;
     }
     public override void SizeUpgrade()
     {

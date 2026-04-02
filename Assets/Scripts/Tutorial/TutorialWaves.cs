@@ -78,14 +78,6 @@ public class TutorialWaves : MonoBehaviour
     }
     private IEnumerator NewWave()
     {
-        countDown[4].gameObject.SetActive(true);
-        yield return new WaitForSeconds(1);
-
-        countDown[4].gameObject.SetActive(false);
-        countDown[3].gameObject.SetActive(true);
-        yield return new WaitForSeconds(1);
-
-        countDown[3].gameObject.SetActive(false);
         countDown[2].gameObject.SetActive(true);
         yield return new WaitForSeconds(1);
 

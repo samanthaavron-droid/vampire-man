@@ -18,6 +18,11 @@ public class Weapons : MonoBehaviour
 
     public Collider2D sword;
     public GameObject trap;
+
+    public ParticleSystem dashParticle;
+    public Animator weaponAnim;
+    public GameObject crossAnim;
+
     private void OnValidate()
     {
         SetWeapon();

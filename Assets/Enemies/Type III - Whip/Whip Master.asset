@@ -16,8 +16,8 @@ MonoBehaviour:
   speed: 0
   reChargeTime: 0
   size: 0
-  health: 8
+  health: 3
   tag: Player
   movementSpeed: 4
   currentDirection: {x: 0, y: 0}
-  xp: 4
+  xp: 5

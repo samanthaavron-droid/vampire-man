@@ -31,6 +31,5 @@ public class SwordBody : MonoBehaviour
     { 
             yield return new WaitForSeconds(stats.speed);
             Destroy(gameObject);
-        
     }
 }
