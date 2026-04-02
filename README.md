@@ -8,17 +8,11 @@
 
 *Feedback*: Players knows their killcount, level, high score
 
-*Progress*: New weapons
+*Progress*: New weapons, bigger waves, upgrades to weapons
 
 
-*Theme*: Vampires, Dracula, Arcade
+*Theme*: Vampires, Dracula, Arcade. Churhc
 
-*Setting*: Dracula's castle
+*Setting*: Church's basement
 
 *What do you collect*: Upgrades and weapons
-
-*New Mechanic*: 
-
-*How does it work*: 
-
-Work to be done: https://trello.com/invite/b/698dab6614e12e81bd4b372c/ATTIee1b98197f6937ad6b3892f51dd4541b600BB35F/vampire-man
